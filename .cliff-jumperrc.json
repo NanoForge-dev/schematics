@@ -1,0 +1,6 @@
+{
+  "name": "schematics",
+  "org": "nanoforge-dev",
+  "packagePath": ".",
+  "identifierBase": false
+}
