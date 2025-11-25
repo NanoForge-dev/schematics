@@ -1,4 +1,4 @@
-export interface ApplicationSchema {
+export interface ApplicationOptions {
   /**
    * NanoForge application name
    */
@@ -7,40 +7,35 @@ export interface ApplicationSchema {
   /**
    * NanoForge application version
    */
-  version?: string;
+  version: string;
 
   /**
    * NanoForge application author
    */
-  author?: string;
+  author: string;
 
   /**
    * NanoForge application description
    */
-  description?: string;
-
-  /**
-   * NanoForge application destination directory
-   */
-  directory?: string;
+  description: string;
 
   /**
    * NanoForge Application language
    */
-  language?: "js" | "ts";
+  language: "js" | "ts";
 
   /**
    * With strict mode (TypeScript or JavaScript but only on compatible editor)
    */
-  strict?: boolean;
+  strict: boolean;
 
   /**
    * The used package manager
    */
-  packageManager?: "npm" | "yarn" | "pnpm" | "bun";
+  packageManager: "npm" | "yarn" | "pnpm" | "bun";
 
   /**
    * NanoForge included production dependencies (comma separated values)
    */
-  dependencies?: string;
+  dependencies: string;
 }

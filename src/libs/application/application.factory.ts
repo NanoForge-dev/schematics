@@ -8,9 +8,9 @@ import {
   template,
   url,
 } from "@angular-devkit/schematics";
-import { basename, parse } from "path";
 
 import { toKebabCase } from "@utils/formatting";
+import { resolvePackageName } from "@utils/name";
 
 import {
   DEFAULT_APP_NAME,
@@ -21,44 +21,21 @@ import {
   DEFAULT_VERSION,
 } from "~/defaults";
 
-import { type ApplicationOptions } from "./application.schema";
+import { type ApplicationOptions } from "./application.options";
+import { type ApplicationSchema } from "./application.schema";
 
-/**
- * The rules for `name` field defined at https://www.npmjs.com/package/normalize-package-data
- * are the following: the string may not:
- * 1. start with a period.
- * 2. contain the following characters: `/@\s+%`.
- * 3. contain any characters that would need to be encoded for use in URLs.
- * 4. resemble the word `node_modules` or `favicon.ico` (case doesn't matter).
- * but only the rule *1* is addressed by this function as the other ones doesn't
- * have a canonical representation.
- */
-const resolvePackageName = (path: string): string => {
-  const { base: baseFilename, dir: dirname } = parse(path);
-  if (baseFilename === ".") {
-    return basename(process.cwd());
-  }
-  // If is as a package with scope (https://docs.npmjs.com/misc/scope)
-  if (dirname.match(/^@[^\s]/)) {
-    return `${dirname}/${baseFilename}`;
-  }
-  return baseFilename;
-};
-
-const transform = (options: Partial<ApplicationOptions>): ApplicationOptions => {
-  const name = resolvePackageName(toKebabCase(options.name?.toString() ?? DEFAULT_APP_NAME));
+const transform = (schema: ApplicationSchema): ApplicationOptions => {
+  const name = resolvePackageName(toKebabCase(schema.name?.toString() ?? DEFAULT_APP_NAME));
 
   return {
-    ...options,
     name,
-    version: options.version ?? DEFAULT_VERSION,
-    author: options.author ?? DEFAULT_AUTHOR,
-    description: options.description ?? DEFAULT_DESCRIPTION,
-    directory: options.directory ?? name,
-    language: options.language ?? DEFAULT_LANGUAGE,
-    strict: options.strict ?? true,
-    packageManager: options.packageManager ?? DEFAULT_PACKAGE_MANAGER,
-    dependencies: options.dependencies ?? "",
+    version: schema.version ?? DEFAULT_VERSION,
+    author: schema.author ?? DEFAULT_AUTHOR,
+    description: schema.description ?? DEFAULT_DESCRIPTION,
+    language: schema.language ?? DEFAULT_LANGUAGE,
+    strict: schema.strict ?? true,
+    packageManager: schema.packageManager ?? DEFAULT_PACKAGE_MANAGER,
+    dependencies: schema.dependencies ?? "",
   };
 };
 
@@ -72,10 +49,8 @@ const generate = (options: ApplicationOptions, path: string): Source => {
   ]);
 };
 
-const main = (rawOptions: Partial<ApplicationOptions>): Rule => {
-  const options = transform(rawOptions);
+export const main = (schema: ApplicationSchema): Rule => {
+  const options = transform(schema);
 
-  return mergeWith(generate(options, options.directory));
+  return mergeWith(generate(options, schema.directory ?? options.name));
 };
-
-export default main;
