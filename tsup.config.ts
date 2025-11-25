@@ -48,4 +48,16 @@ function createTsupConfig({
   });
 }
 
-export default [createTsupConfig()];
+function createLibTsupConfig(name: string) {
+  return createTsupConfig({
+    entry: [`src/libs/${name}/${name}.factory.ts`],
+    outDir: `dist/libs/${name}`,
+    format: ["esm"],
+  });
+}
+
+export default [
+  createTsupConfig(),
+  createLibTsupConfig("application"),
+  createLibTsupConfig("configuration"),
+];
