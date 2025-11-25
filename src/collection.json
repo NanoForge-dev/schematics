@@ -5,6 +5,11 @@
       "factory": "./lib/application/application.factory#main",
       "description": "Create a NanoForge Base application.",
       "schema": "./lib/application/schema.json"
+    },
+    "configuration": {
+      "factory": "./lib/configuration/configuration.factory#main",
+      "description": "Create a NanoForge Configuration.",
+      "schema": "./lib/configuration/schema.json"
     }
   }
 }
