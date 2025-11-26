@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "SchematicsNanoForgeConfiguration",
+  "title": "NanoForge Base Application Options Schema",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the application",
+      "$default": {
+        "$source": "argv",
+        "index": 0
+      },
+      "x-prompt": "What name would you like to use for the new project ?"
+    },
+    "directory": {
+      "type": "string",
+      "description": "NanoForge application destination directory"
+    },
+    "client": {
+      "type": "object",
+      "description": "Client configuration",
+      "properties": {
+        "port": {
+          "type": "string",
+          "description": "Client port"
+        },
+        "gameExposurePort": {
+          "type": "string",
+          "description": "Game exposure port"
+        },
+        "build": {
+          "type": "object",
+          "description": "Build configuration",
+          "properties": {
+            "entryFile": {
+              "type": "string",
+              "description": "Entry file of the application"
+            },
+            "outDir": {
+              "type": "string",
+              "description": "Output directory of the application"
+            }
+          }
+        },
+        "runtime": {
+          "type": "object",
+          "description": "Runtime configuration",
+          "properties": {
+            "dir": {
+              "type": "string",
+              "description": "Directory of the application"
+            }
+          }
+        }
+      }
+    },
+    "server": {
+      "type": "object",
+      "description": "Server configuration",
+      "properties": {
+        "enable": {
+          "type": "boolean",
+          "description": "Enable server configuration"
+        },
+        "port": {
+          "type": "string",
+          "description": "Server port"
+        },
+        "build": {
+          "type": "object",
+          "description": "Build configuration",
+          "properties": {
+            "entryFile": {
+              "type": "string",
+              "description": "Entry file of the application"
+            },
+            "outDir": {
+              "type": "string",
+              "description": "Output directory of the application"
+            }
+          }
+        },
+        "runtime": {
+          "type": "object",
+          "description": "Runtime configuration",
+          "properties": {
+            "dir": {
+              "type": "string",
+              "description": "Directory of the application"
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["name"]
+}

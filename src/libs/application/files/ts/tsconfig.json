@@ -3,17 +3,17 @@
   // Mapped from https://www.typescriptlang.org/tsconfig
   "compilerOptions": {
     // Type Checking
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "noFallthroughCasesInSwitch": true,
-    "noImplicitOverride": true,
-    "noImplicitReturns": true,
-    "noPropertyAccessFromIndexSignature": false,
-    "noUncheckedIndexedAccess": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "skipLibCheck": true,
-    "strict": true,
+    "allowUnreachableCode": <%= !strict %>,
+    "allowUnusedLabels": <%= !strict %>,
+    "exactOptionalPropertyTypes": <%= strict %>,
+    "noFallthroughCasesInSwitch": <%= strict %>,
+    "noImplicitOverride": <%= strict %>,
+    "noImplicitReturns": <%= strict %>,
+    "noPropertyAccessFromIndexSignature": <%= !strict %>,
+    "noUncheckedIndexedAccess": <%= strict %>,
+    "noUnusedLocals": <%= strict %>,
+    "noUnusedParameters": <%= strict %>,
+    "strict": <%= strict %>,
 
     // Modules
     "allowArbitraryExtensions": false,
@@ -23,16 +23,6 @@
     "resolveJsonModule": true,
     "resolvePackageJsonExports": true,
     "resolvePackageJsonImports": true,
-
-    // Emit
-    "declaration": true,
-    "declarationMap": true,
-    "importHelpers": false,
-    "newLine": "lf",
-    "noEmitHelpers": true,
-    "outDir": "dist",
-    "removeComments": false,
-    "sourceMap": true,
 
     // Interop Constraints
     "allowSyntheticDefaultImports": true,
@@ -45,11 +35,7 @@
     "lib": ["ESNext", "esnext.disposable"],
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "paths": {
-      "~/*": ["./src/*"],
-      "@utils/*": ["./src/utils/*"]
-    }
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["client/**/*.ts", "server/**/*.ts"],
+  "exclude": ["node_modules", ".nanoforge"]
 }
