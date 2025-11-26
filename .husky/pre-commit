@@ -1,0 +1,2 @@
+pnpm --no-install lint-staged
+pnpm format
