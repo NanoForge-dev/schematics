@@ -2,14 +2,14 @@
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
   "schematics": {
     "application": {
-      "factory": "./lib/application/application.factory#main",
+      "factory": "./libs/application/application.factory#main",
       "description": "Create a NanoForge Base application.",
-      "schema": "./lib/application/schema.json"
+      "schema": "./libs/application/schema.json"
     },
     "configuration": {
-      "factory": "./lib/configuration/configuration.factory#main",
+      "factory": "./libs/configuration/configuration.factory#main",
       "description": "Create a NanoForge Configuration.",
-      "schema": "./lib/configuration/schema.json"
+      "schema": "./libs/configuration/schema.json"
     }
   }
 }
