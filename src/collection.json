@@ -10,6 +10,11 @@
       "factory": "./libs/configuration/configuration.factory#main",
       "description": "Create a NanoForge Configuration.",
       "schema": "./libs/configuration/schema.json"
+    },
+    "client": {
+      "factory": "./libs/client/client.factory#main",
+      "description": "Create a NanoForge Client.",
+      "schema": "./libs/client/schema.json"
     }
   }
 }
