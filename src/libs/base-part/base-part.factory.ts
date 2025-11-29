@@ -15,20 +15,22 @@ import { resolvePackageName } from "@utils/name";
 
 import { DEFAULT_APP_NAME, DEFAULT_LANGUAGE } from "~/defaults";
 
-import { type ClientOptions } from "./client.options";
-import { type ClientSchema } from "./client.schema";
+import { type BasePartOptions } from "./base-part.options";
+import { type BasePartSchema } from "./base-part.schema";
 
-const transform = (schema: ClientSchema): ClientOptions => {
+const transform = (schema: BasePartSchema): BasePartOptions => {
   const name = resolvePackageName(toKebabCase(schema.name?.toString() ?? DEFAULT_APP_NAME));
 
   return {
     name,
+    part: schema.part,
+    appClass: schema.part === "client" ? "NanoforgeClient" : "NanoforgeServer",
     language: schema.language ?? DEFAULT_LANGUAGE,
     initFunctions: schema.initFunctions ?? false,
   };
 };
 
-const generate = (options: ClientOptions, path: string): Source => {
+const generate = (options: BasePartOptions, path: string): Source => {
   const rules = [
     template({
       ...strings,
@@ -41,7 +43,7 @@ const generate = (options: ClientOptions, path: string): Source => {
   return apply(url(join("./files" as Path, options.language)), rules);
 };
 
-export const main = (schema: ClientSchema): Rule => {
+export const main = (schema: BasePartSchema): Rule => {
   const options = transform(schema);
 
   return mergeWith(generate(options, schema.directory ?? options.name));

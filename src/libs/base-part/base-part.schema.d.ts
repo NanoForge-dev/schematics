@@ -1,8 +1,13 @@
-export interface ClientSchema {
+export interface BasePartSchema {
   /**
    * NanoForge application name
    */
   name: string;
+
+  /**
+   * The part of the application to generate
+   */
+  part: "client" | "server";
 
   /**
    * NanoForge application destination directory

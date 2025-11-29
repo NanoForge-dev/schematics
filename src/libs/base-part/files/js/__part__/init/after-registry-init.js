@@ -1,11 +1,11 @@
 /**
- * @typedef {import("@nanoforge-dev/core").NanoforgeClient} NanoforgeClient
+ * @typedef {import("@nanoforge-dev/core").<%= appClass %>} <%= appClass %>
  * @typedef {import("@nanoforge-dev/ecs").Registry} Registry
  */
 
 /**
  * Actions that are executed after the registry components, entities and systems initialization
- * @param {NanoforgeClient} app - Nanoforge client instance
+ * @param {<%= appClass %>} app - Nanoforge <%= part %> instance
  * @param {Registry} registry - ECS registry instance
  * @returns {Promise<void>}
  */

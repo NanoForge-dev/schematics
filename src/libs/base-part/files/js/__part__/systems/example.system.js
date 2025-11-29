@@ -10,7 +10,7 @@ import { ExampleComponent } from "../components/example.component";
  * Example system
  * This system end the game when paramB reaches 0 for any entity with ExampleComponent
  * @param {Registry} registry - ECS registry instance
- * @param {Context} ctx - Nanoforge client instance
+ * @param {Context} ctx - Nanoforge <%= part %> instance
  */
 export const exampleSystem = (registry: Registry, ctx: Context) => {
   const entities = registry.getZipper([ExampleComponent]);
