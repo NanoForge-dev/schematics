@@ -13,7 +13,7 @@ importers:
         version: 21.0.0(chokidar@4.0.3)
       '@angular-devkit/schematics':
         specifier: ^21.0.0
-        version: 21.0.0(chokidar@4.0.3)
+        version: 21.0.1(chokidar@4.0.3)
     devDependencies:
       '@commitlint/cli':
         specifier: ^20.1.0
@@ -90,8 +90,17 @@ packages:
       chokidar:
         optional: true
 
-  '@angular-devkit/schematics@21.0.0':
-    resolution: {integrity: sha512-8zwXp8OTzJO3IY3Ge3lLqXokNAtQy6kM1FeTyPT20M+0AQHTX9WJlGaYEWdLYI9WwNPWy1/Iq6AaZNcR5phPpw==}
+  '@angular-devkit/core@21.0.1':
+    resolution: {integrity: sha512-AGdAu0hV2TLCWYHiyVSxUFbpR2chO+xA4OkRrG2YirQGcqJTmr651C4rWDkheWqeWDxMicZklqKaTw66mNSUkw==}
+    engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
+    peerDependencies:
+      chokidar: ^4.0.0
+    peerDependenciesMeta:
+      chokidar:
+        optional: true
+
+  '@angular-devkit/schematics@21.0.1':
+    resolution: {integrity: sha512-3koB1xJNkqMg7g6JwH2rhQO268WjnPVA852lwoLW7wzSZRpJH0kHtZsnY9FYOC2kbmAGnCWWbnPLJ5/T1wemoA==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
 
   '@antfu/ni@27.0.1':
@@ -2062,9 +2071,20 @@ snapshots:
     optionalDependencies:
       chokidar: 4.0.3
 
-  '@angular-devkit/schematics@21.0.0(chokidar@4.0.3)':
+  '@angular-devkit/core@21.0.1(chokidar@4.0.3)':
     dependencies:
-      '@angular-devkit/core': 21.0.0(chokidar@4.0.3)
+      ajv: 8.17.1
+      ajv-formats: 3.0.1(ajv@8.17.1)
+      jsonc-parser: 3.3.1
+      picomatch: 4.0.3
+      rxjs: 7.8.2
+      source-map: 0.7.6
+    optionalDependencies:
+      chokidar: 4.0.3
+
+  '@angular-devkit/schematics@21.0.1(chokidar@4.0.3)':
+    dependencies:
+      '@angular-devkit/core': 21.0.1(chokidar@4.0.3)
       jsonc-parser: 3.3.1
       magic-string: 0.30.19
       ora: 9.0.0
