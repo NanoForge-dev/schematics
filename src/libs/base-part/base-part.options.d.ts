@@ -1,8 +1,18 @@
-export interface ClientOptions {
+export interface BasePartOptions {
   /**
    * NanoForge application name
    */
   name: string;
+
+  /**
+   * The part of the application to generate
+   */
+  part: "client" | "server";
+
+  /**
+   * App class name
+   */
+  appClass: string;
 
   /**
    * NanoForge Application language

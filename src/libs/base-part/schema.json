@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "SchematicsNanoForgeBaseApplication",
-  "title": "NanoForge Base Application Options Schema",
+  "$id": "SchematicsNanoForgeBasePart",
+  "title": "NanoForge Base Part Options Schema",
   "type": "object",
   "properties": {
     "name": {
@@ -12,6 +12,11 @@
         "index": 0
       },
       "x-prompt": "What name would you like to use for the new project ?"
+    },
+    "part": {
+      "type": "string",
+      "enum": ["client", "server"],
+      "description": "The part of the application to generate"
     },
     "version": {
       "type": "string",
@@ -50,5 +55,5 @@
       "default": "npm"
     }
   },
-  "required": ["name"]
+  "required": ["name", "part"]
 }

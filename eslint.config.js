@@ -11,7 +11,7 @@ export default [
   ...tseslint.configs.recommended,
   ...tseslint.configs.strict,
   eslintConfigPrettier,
-  { ignores: ["**/*.js", "**/*.d.ts", "src/libs/**/files/**/*.json"] },
+  { ignores: ["**/*.js", "**/*.d.ts", "src/libs/**/files/**/*"] },
   {
     rules: {
       "@typescript-eslint/consistent-type-imports": [
@@ -41,9 +41,5 @@ export default [
         },
       ],
     },
-  },
-  {
-    files: ["src/libs/**/files/**/*.{ts,js}"],
-    rules: { "@typescript-eslint/no-unused-vars": "off" },
   },
 ];
