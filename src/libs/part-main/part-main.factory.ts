@@ -63,7 +63,6 @@ const getSave = (path: string, part: "client" | "server", saveFile?: string): Sa
 };
 
 export const main = (schema: PartMainSchema): Rule => {
-  console.error(schema);
   const options = transform(schema);
 
   return mergeWith(generate(options, schema.directory ?? options.name));
