@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.0.0](https://github.com/NanoForge-dev/schematics/compare/0.0.1...1.0.0) - (2025-11-30)
+
+## Bug Fixes
+
+- Change exports in package json and update schema paths (#17) ([b78b72a](https://github.com/NanoForge-dev/schematics/commit/b78b72a40b2287d841a3cac90adb0d37b4493d4e)) by @Exeloo
+
+## Features
+
+- **schematics:** Add part-main schematics for generating client/server main files (#29) ([6f34c1c](https://github.com/NanoForge-dev/schematics/commit/6f34c1c0f70d67eb78645108a665f7c5ebab8086)) by @Exeloo
+- **schematics:** Replace client by base-part schematics to handle server (#20) ([c5ad539](https://github.com/NanoForge-dev/schematics/commit/c5ad539d7ac524de724c49dfa6b0e7b310700a44)) by @Exeloo
+- **schematics:** Add client base schematics (#19) ([f02b26d](https://github.com/NanoForge-dev/schematics/commit/f02b26db6be9226857fbf3fe0ffe1abf6de31024)) by @Exeloo
+
+### New Contributors
+
+- @renovate[bot] made their first contribution in #27
+
 # [0.0.1](https://github.com/NanoForge-dev/schematics/tree/0.0.1) - (2025-11-28)
 
 ## Features
