@@ -35,8 +35,13 @@ const generate = (options: PartBaseOptions, path: string): Source => {
     template({
       ...strings,
       ...options,
+      nanoforgeFolder: ".nanoforge",
     }),
     move(path),
+    filter((path) => {
+      const splited = path.split("/");
+      return splited.at(-2) !== ".nanoforge" || splited.at(-1) === `${options.part}.save.json`;
+    }),
   ];
   if (!options.initFunctions) rules.push(filter((path) => path.split("/").at(-2) !== "init"));
 

@@ -1,0 +1,69 @@
+{
+  "libraries": [
+    {
+      "id": "assetManagerLibrary",
+      "type": "asset-manager",
+      "name": "AssetManagerLibrary",
+      "path": "@nanoforge-dev/asset-manager",
+      "params": []
+    },
+    {
+      "id": "ecsLibrary",
+      "type": "component-system",
+      "name": "ECSLibrary",
+      "path": "@nanoforge-dev/ecs",
+      "params": ["\"client\""]
+    },
+    {
+      "id": "graphicsLibrary",
+      "type": "graphics",
+      "name": "Graphics2DLibrary",
+      "path": "@nanoforge-dev/graphics-2d",
+      "params": []
+    },
+    {
+      "id": "inputLibrary",
+      "type": "input",
+      "name": "InputLibrary",
+      "path": "@nanoforge-dev/input",
+      "params": []
+    },
+    {
+      "id": "musicLibrary",
+      "type": "music",
+      "name": "MusicLibrary",
+      "path": "@nanoforge-dev/music",
+      "params": []
+    },
+    {
+      "id": "soundLibrary",
+      "type": "sound",
+      "name": "SoundLibrary",
+      "path": "@nanoforge-dev/sound",
+      "params": []
+    }
+  ],
+  "components": [
+    {
+      "name": "ExampleComponent",
+      "path": "./components/example.component"
+    }
+  ],
+  "systems": [
+    {
+      "name": "exampleSystem",
+      "path": "./systems/example.system"
+    }
+  ],
+  "entities": [
+    {
+      "id": "exampleEntity",
+      "components": [
+        {
+          "name": "ExampleComponent",
+          "params": ["\"example\"", "10"]
+        }
+      ]
+    }
+  ]
+}

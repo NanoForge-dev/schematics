@@ -1,0 +1,41 @@
+{
+  "libraries": [
+    {
+      "id": "assetManagerLibrary",
+      "type": "asset-manager",
+      "name": "AssetManagerLibrary",
+      "path": "@nanoforge-dev/asset-manager",
+      "params": []
+    },
+    {
+      "id": "ecsLibrary",
+      "type": "component-system",
+      "name": "ECSLibrary",
+      "path": "@nanoforge-dev/ecs",
+      "params": ["\"server\""]
+    }
+  ],
+  "components": [
+    {
+      "name": "ExampleComponent",
+      "path": "./components/example.component"
+    }
+  ],
+  "systems": [
+    {
+      "name": "exampleSystem",
+      "path": "./systems/example.system"
+    }
+  ],
+  "entities": [
+    {
+      "id": "exampleEntity",
+      "components": [
+        {
+          "name": "ExampleComponent",
+          "params": ["\"example\"", "10"]
+        }
+      ]
+    }
+  ]
+}
