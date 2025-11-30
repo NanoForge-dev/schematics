@@ -15,6 +15,11 @@
       "factory": "./libs/part-base/part-base.factory#main",
       "description": "Create a NanoForge Base for client or server.",
       "schema": "./libs/part-base/schema.json"
+    },
+    "part-main": {
+      "factory": "./libs/part-main/part-main.factory#main",
+      "description": "Create a Main file for client or server.",
+      "schema": "./libs/part-main/schema.json"
     }
   }
 }
