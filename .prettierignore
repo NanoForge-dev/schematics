@@ -7,3 +7,4 @@ bun.lock
 /dist
 /node_modules
 /src/libs/*/files/**
+CHANGELOG.md
