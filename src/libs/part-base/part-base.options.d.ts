@@ -1,4 +1,4 @@
-export interface BasePartOptions {
+export interface PartBaseOptions {
   /**
    * NanoForge application name
    */

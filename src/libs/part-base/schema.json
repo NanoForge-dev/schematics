@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "SchematicsNanoForgeBasePart",
-  "title": "NanoForge Base Part Options Schema",
+  "$id": "SchematicsNanoForgePartBase",
+  "title": "NanoForge Part Base Options Schema",
   "type": "object",
   "properties": {
     "name": {
@@ -18,21 +18,6 @@
       "enum": ["client", "server"],
       "description": "The part of the application to generate"
     },
-    "version": {
-      "type": "string",
-      "description": "NanoForge application version",
-      "default": "0.0.0"
-    },
-    "author": {
-      "type": "string",
-      "description": "NanoForge application author",
-      "default": ""
-    },
-    "description": {
-      "type": "string",
-      "description": "NanoForge application description",
-      "default": ""
-    },
     "directory": {
       "type": "string",
       "description": "NanoForge application destination directory"
@@ -43,16 +28,10 @@
       "description": "NanoForge application language",
       "default": "ts"
     },
-    "strict": {
+    "initFunctions": {
       "type": "boolean",
-      "description": "With strict mode (TypeScript or JavaScript but only on compatible editor)",
-      "default": true
-    },
-    "packageManager": {
-      "type": "string",
-      "enum": ["npm", "yarn", "pnpm", "bun"],
-      "description": "NanoForge application package manager",
-      "default": "npm"
+      "description": "Add init functions to the application",
+      "default": false
     }
   },
   "required": ["name", "part"]

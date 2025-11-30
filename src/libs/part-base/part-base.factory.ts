@@ -15,10 +15,10 @@ import { resolvePackageName } from "@utils/name";
 
 import { DEFAULT_APP_NAME, DEFAULT_LANGUAGE } from "~/defaults";
 
-import { type BasePartOptions } from "./base-part.options";
-import { type BasePartSchema } from "./base-part.schema";
+import { type PartBaseOptions } from "./part-base.options";
+import { type PartBaseSchema } from "./part-base.schema";
 
-const transform = (schema: BasePartSchema): BasePartOptions => {
+const transform = (schema: PartBaseSchema): PartBaseOptions => {
   const name = resolvePackageName(toKebabCase(schema.name?.toString() ?? DEFAULT_APP_NAME));
 
   return {
@@ -30,7 +30,7 @@ const transform = (schema: BasePartSchema): BasePartOptions => {
   };
 };
 
-const generate = (options: BasePartOptions, path: string): Source => {
+const generate = (options: PartBaseOptions, path: string): Source => {
   const rules = [
     template({
       ...strings,
@@ -43,7 +43,7 @@ const generate = (options: BasePartOptions, path: string): Source => {
   return apply(url(join("./files" as Path, options.language)), rules);
 };
 
-export const main = (schema: BasePartSchema): Rule => {
+export const main = (schema: PartBaseSchema): Rule => {
   const options = transform(schema);
 
   return mergeWith(generate(options, schema.directory ?? options.name));

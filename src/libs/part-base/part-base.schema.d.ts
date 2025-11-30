@@ -1,4 +1,4 @@
-export interface BasePartSchema {
+export interface PartBaseSchema {
   /**
    * NanoForge application name
    */
