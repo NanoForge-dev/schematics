@@ -11,10 +11,15 @@
       "description": "Create a NanoForge Configuration.",
       "schema": "./libs/configuration/schema.json"
     },
-    "base-part": {
-      "factory": "./libs/base-part/base-part.factory#main",
-      "description": "Create a NanoForge Base part.",
-      "schema": "./libs/base-part/schema.json"
+    "part-base": {
+      "factory": "./libs/part-base/part-base.factory#main",
+      "description": "Create a NanoForge Base for client or server.",
+      "schema": "./libs/part-base/schema.json"
+    },
+    "part-main": {
+      "factory": "./libs/part-main/part-main.factory#main",
+      "description": "Create a Main file for client or server.",
+      "schema": "./libs/part-main/schema.json"
     }
   }
 }

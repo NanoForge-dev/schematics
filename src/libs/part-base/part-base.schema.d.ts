@@ -1,4 +1,4 @@
-export interface BasePartOptions {
+export interface PartBaseSchema {
   /**
    * NanoForge application name
    */
@@ -10,17 +10,17 @@ export interface BasePartOptions {
   part: "client" | "server";
 
   /**
-   * App class name
+   * NanoForge application destination directory
    */
-  appClass: string;
+  directory?: string;
 
   /**
    * NanoForge Application language
    */
-  language: "js" | "ts";
+  language?: "js" | "ts";
 
   /**
    * Add init functions to the application
    */
-  initFunctions: boolean;
+  initFunctions?: boolean;
 }

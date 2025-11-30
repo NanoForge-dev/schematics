@@ -60,5 +60,6 @@ export default [
   createTsupConfig(),
   createLibTsupConfig("application"),
   createLibTsupConfig("configuration"),
-  createLibTsupConfig("base-part"),
+  createLibTsupConfig("part-base"),
+  createLibTsupConfig("part-main"),
 ];

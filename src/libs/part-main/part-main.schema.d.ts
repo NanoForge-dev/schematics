@@ -1,4 +1,4 @@
-export interface BasePartSchema {
+export interface PartMainSchema {
   /**
    * NanoForge application name
    */
@@ -23,4 +23,9 @@ export interface BasePartSchema {
    * Add init functions to the application
    */
   initFunctions?: boolean;
+
+  /**
+   * Save file path with components and systems in JSON format
+   */
+  saveFile?: string;
 }
