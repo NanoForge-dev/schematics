@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.0.1](https://github.com/NanoForge-dev/schematics/compare/1.0.0...1.0.1) - (2025-12-04)
+
+## Bug Fixes
+
+- **configuration:** Simplify schema and change defaults (#34) ([af29b00](https://github.com/NanoForge-dev/schematics/commit/af29b0011ae078dc75c9625e8f470f8506a7c7cb)) by @Exeloo
+
 # [1.0.0](https://github.com/NanoForge-dev/schematics/compare/0.0.1...1.0.0) - (2025-11-30)
 
 ## Bug Fixes
