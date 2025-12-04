@@ -24,8 +24,9 @@ import { type ConfigurationSchema } from "./configuration.schema";
 
 const transform = (schema: ConfigurationSchema): ConfigurationOptions => {
   return {
-    client: schema.client,
-    server: schema.server,
+    server: {
+      enable: schema.server ?? false,
+    },
   };
 };
 
