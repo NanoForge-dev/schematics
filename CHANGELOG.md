@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [1.0.2](https://github.com/NanoForge-dev/schematics/compare/1.0.1...1.0.2) - (2025-12-06)
+
+## Bug Fixes
+
+- Split ecs between client and server (#38) ([086d42f](https://github.com/NanoForge-dev/schematics/commit/086d42f1639cc764fb6f21c6ce8d9426ec2581e7)) by @Exeloo
+
 # [1.0.1](https://github.com/NanoForge-dev/schematics/compare/1.0.0...1.0.1) - (2025-12-04)
 
 ## Bug Fixes
