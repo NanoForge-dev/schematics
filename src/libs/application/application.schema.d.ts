@@ -40,7 +40,7 @@ export interface ApplicationSchema {
   packageManager?: "npm" | "yarn" | "pnpm" | "bun";
 
   /**
-   * NanoForge included production dependencies (comma separated values)
+   * Configure a server for the application
    */
-  dependencies?: string;
+  server?: boolean;
 }

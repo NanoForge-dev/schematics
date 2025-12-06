@@ -16,7 +16,7 @@
     "@nanoforge-dev/common": "^0.0.1",
     "@nanoforge-dev/config": "^0.0.1",
     "@nanoforge-dev/core": "^0.0.1",
-    "@nanoforge-dev/ecs": "^0.0.1",
+    "@nanoforge-dev/ecs-client": "^0.0.1",<%= !!server ? "\n    \"@nanoforge-dev/ecs-server\": \"^0.0.1\"," : "" %>
     "@nanoforge-dev/graphics-2d": "^0.0.1",
     "@nanoforge-dev/input": "^0.0.1",
     "@nanoforge-dev/music": "^0.0.1",

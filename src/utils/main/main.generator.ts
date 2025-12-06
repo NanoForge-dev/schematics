@@ -141,7 +141,7 @@ export class MainGenerator {
   private getInitFunction(name: string, type: SaveLibraryTypeEnum | string): string {
     const baseName = LIBS_FUNCTIONS_NAME[type];
     if (baseName) return `app.${baseName}(${name});`;
-    return `app.use("${type}", ${name});`;
+    return `app.use(Symbol("${type}"), ${name});`;
   }
 
   private writeLine(text: string, indentation = true): void {

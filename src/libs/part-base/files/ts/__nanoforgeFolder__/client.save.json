@@ -10,9 +10,9 @@
     {
       "id": "ecsLibrary",
       "type": "component-system",
-      "name": "ECSLibrary",
-      "path": "@nanoforge-dev/ecs",
-      "params": ["\"client\""]
+      "name": "ECSClientLibrary",
+      "path": "@nanoforge-dev/ecs-client",
+      "params": []
     },
     {
       "id": "graphicsLibrary",
