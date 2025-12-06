@@ -10,9 +10,9 @@
     {
       "id": "ecsLibrary",
       "type": "component-system",
-      "name": "ECSLibrary",
-      "path": "@nanoforge-dev/ecs",
-      "params": ["\"server\""]
+      "name": "ECSServerLibrary",
+      "path": "@nanoforge-dev/ecs-server",
+      "params": []
     }
   ],
   "components": [

@@ -35,11 +35,12 @@ const transform = (schema: ApplicationSchema): ApplicationOptions => {
     language: schema.language ?? DEFAULT_LANGUAGE,
     strict: schema.strict ?? true,
     packageManager: schema.packageManager ?? DEFAULT_PACKAGE_MANAGER,
-    dependencies: schema.dependencies ?? "",
+    server: schema.server ?? false,
   };
 };
 
 const generate = (options: ApplicationOptions, path: string): Source => {
+  console.log(options);
   return apply(url(join("./files" as Path, options.language)), [
     template({
       ...strings,

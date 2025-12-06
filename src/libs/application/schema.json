@@ -48,6 +48,11 @@
       "enum": ["npm", "yarn", "pnpm", "bun"],
       "description": "NanoForge application package manager",
       "default": "npm"
+    },
+    "server": {
+      "type": "boolean",
+      "description": "Configure a server for the application",
+      "default": false
     }
   },
   "required": ["name"]
