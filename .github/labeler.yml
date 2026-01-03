@@ -1,0 +1,23 @@
+schematics:application:
+  - changed-files:
+      - any-glob-to-any-file:
+          - src/libs/application/*
+          - src/libs/application/**/*
+
+schematics:configuration:
+  - changed-files:
+      - any-glob-to-any-file:
+          - src/libs/configuration/*
+          - src/libs/configuration/**/*
+
+schematics:part-base:
+  - changed-files:
+      - any-glob-to-any-file:
+          - src/libs/part-base/*
+          - src/libs/part-base/**/*
+
+schematics:part-main:
+  - changed-files:
+      - any-glob-to-any-file:
+          - src/libs/part-main/*
+          - src/libs/part-main/**/*

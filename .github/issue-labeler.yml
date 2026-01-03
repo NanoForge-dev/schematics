@@ -1,0 +1,15 @@
+schematics:application:
+  - "### Which schematics is this (bug
+    report|feature request) for\\?\\n\\napplication\\n"
+
+schematics:configuration:
+  - "### Which schematics is this (bug
+    report|feature request) for\\?\\n\\nconfiguration\\n"
+
+schematics:part-base:
+  - "### Which schematics is this (bug
+    report|feature request) for\\?\\n\\npart-base\\n"
+
+schematics:part-main:
+  - "### Which schematics is this (bug
+    report|feature request) for\\?\\n\\npart-main\\n"
