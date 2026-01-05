@@ -40,7 +40,6 @@ const transform = (schema: ApplicationSchema): ApplicationOptions => {
 };
 
 const generate = (options: ApplicationOptions, path: string): Source => {
-  console.log(options);
   return apply(url(join("./files" as Path, options.language)), [
     template({
       ...strings,
