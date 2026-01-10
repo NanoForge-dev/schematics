@@ -21,3 +21,9 @@ schematics:part-main:
       - any-glob-to-any-file:
           - src/libs/part-main/*
           - src/libs/part-main/**/*
+
+documentation:
+  - changed-files:
+      - any-glob-to-any-file:
+          - docs/*
+          - docs/**/*

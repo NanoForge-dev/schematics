@@ -44,7 +44,7 @@
     "type": "git",
     "url": "git+https://github.com/NanoForge-dev/schematics.git"
   },
-  "funding": "",
+  "funding": "https://github.com/NanoForge-dev/schematics?sponsor",
   "scripts": {
     "build": "tsc --noEmit && tsup",
     "postbuild": "pnpm run copy:collection && pnpm run copy:lib",
@@ -79,7 +79,6 @@
     "husky": "^9.1.7",
     "lint-staged": "^16.2.6",
     "prettier": "^3.6.2",
-    "taze": "^19.9.0",
     "tsup": "^8.5.1",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.46.2"

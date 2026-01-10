@@ -1,13 +1,13 @@
 name: Feature request
 description: Request a new feature
-labels: [enhancement request]
+labels: [enhancement]
 body:
   - type: markdown
     attributes:
       value: |
         Thank you for submitting an idea !
   - type: dropdown
-    id: application_or_schematics
+    id: schematics
     attributes:
       label: Which schematics is this feature request for?
       options:
@@ -15,6 +15,7 @@ body:
         - configuration
         - part-base
         - part-main
+        - other
     validations:
       required: true
   - type: textarea
