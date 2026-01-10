@@ -10,4 +10,4 @@ To get ready to work on the codebase, please do the following:
 2. Run `pnpm install --frozen-lockfile` ([install](https://pnpm.io/installation))
 3. Make your changes
 4. Run `pnpm format && pnpm build && pnpm test:unit` to run ESLint/Prettier, build and tests
-5. [Submit a pull request](https://github.com/NanoForge-dev/schematics/compare) (Make sure you follow the [conventional commit format](https://github.com/NanoForge-dev/CLI/blob/main/.github/COMMIT_CONVENTION.md))
+5. [Submit a pull request](https://github.com/NanoForge-dev/schematics/compare) (Make sure you follow the [conventional commit format](https://github.com/NanoForge-dev/schematics/blob/main/.github/COMMIT_CONVENTION.md))
