@@ -28,13 +28,13 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - name: Install dependencies
-        uses: .github/actions/pnpm-install.yml
+        uses: ./.github/actions/pnpm-install.yml
 
       - name: Build dependencies
         run: pnpm run build
 
       - name: Release packages
-        uses: node_modules/@nanoforge-dev/actions/dist/release-packages
+        uses: ./node_modules/@nanoforge-dev/actions/dist/release-packages
         with:
           package: "@nanoforge-dev/schematics"
           exclude: ""
