@@ -28,7 +28,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
 
       - name: Install dependencies
-        uses: ./.github/actions/pnpm-install.yml
+        uses: ./.github/actions/pnpm-install
 
       - name: Build dependencies
         run: pnpm run build
