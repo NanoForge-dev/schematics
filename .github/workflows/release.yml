@@ -27,28 +27,18 @@ jobs:
           package-manager-cache: false
           registry-url: https://registry.npmjs.org/
 
-      - name: Install actions
-        id: actions
-        shell: bash
-        run: |
-          npm install -g @nanoforge-dev/actions && echo "ACTIONS_PATH=$(npm ls -gp @nanoforge-dev/actions)" >> $GITHUB_OUTPUT
-
       - name: Install dependencies
-        uses: jenseng/dynamic-uses@v1
-        with:
-          uses: ${{ steps.actions.outputs.ACTIONS_PATH }}/dist/pnpm-install
+        uses: ./.github/actions/pnpm-install
 
       - name: Build dependencies
         run: pnpm run build
 
       - name: Release packages
-        uses: jenseng/dynamic-uses@v1
+        uses: ./node_modules/@nanoforge-dev/actions/dist/release-packages
         with:
-          uses: ${{ steps.actions.outputs.ACTIONS_PATH }}/dist/release-packages
-          with: |
-            package: "@nanoforge-dev/schematics"
-            exclude: ""
-            dry: ${{ inputs.dry_run }}
+          package: "@nanoforge-dev/schematics"
+          exclude: ""
+          dry: ${{ inputs.dry_run }}
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
