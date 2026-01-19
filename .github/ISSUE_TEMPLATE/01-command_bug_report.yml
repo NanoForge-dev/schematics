@@ -17,6 +17,7 @@ body:
         - configuration
         - part-base
         - part-main
+        - other
     validations:
       required: true
   - type: textarea

@@ -1,14 +1,17 @@
 <div align="center">
-	<br />
-	<p>
-		<a href="https://github.com/NanoForge-dev"><img src="https://github.com/NanoForge-dev/schematics/blob/main/.github/logo.png" width="546" alt="NanoForge" /></a>
-	</p>
-	<br />
-	<p>
-		<a href="https://github.com/NanoForge-dev/schematics/actions"><img src="https://github.com/NanoForge-dev/schematics/actions/workflows/tests.yml/badge.svg" alt="Tests status" /></a>
-		<a href="https://github.com/NanoForge-dev/schematics/commits/main"><img src="https://img.shields.io/github/last-commit/NanoForge-dev/schematics.svg?logo=github&logoColor=ffffff" alt="Last commit." /></a>
-		<a href="https://github.com/NanoForge-dev/schematics/graphs/contributors"><img src="https://img.shields.io/github/contributors/NanoForge-dev/Schematics.svg?maxAge=3600&logo=github&logoColor=fff&color=00c7be" alt="contributors" /></a>
-	</p>
+    <br />
+    <p>
+        <a href="https://github.com/NanoForge-dev"><img src="https://github.com/NanoForge-dev/schematics/blob/main/.github/logo.png" width="546" alt="NanoForge" /></a>
+    </p>
+    <br />
+    <p>
+        <a href="https://www.npmjs.com/package/@nanoforge-dev/schematics"><img src="https://img.shields.io/npm/v/@nanoforge-dev/schematics.svg?maxAge=3600" alt="npm version" /></a>
+        <a href="https://www.npmjs.com/package/@nanoforge-dev/schematics"><img src="https://img.shields.io/npm/dt/@nanoforge-dev/schematics.svg?maxAge=3600" alt="npm downloads" /></a>
+        <a href="https://github.com/NanoForge-dev/schematics/actions/workflows/tests.yml"><img src="https://github.com/NanoForge-dev/schematics/actions/workflows/tests.yml/badge.svg" alt="Tests status" /></a>
+        <a href="https://github.com/NanoForge-dev/schematics/actions/workflows/push-docs.yml"><img src="https://github.com/NanoForge-dev/schematics/actions/workflows/push-docs.yml/badge.svg" alt="Documentation status" /></a>
+        <a href="https://github.com/NanoForge-dev/schematics/commits/main"><img src="https://img.shields.io/github/last-commit/NanoForge-dev/schematics.svg?logo=github&logoColor=ffffff" alt="Last commit" /></a>
+        <a href="https://github.com/NanoForge-dev/schematics/graphs/contributors"><img src="https://img.shields.io/github/contributors/NanoForge-dev/schematics.svg?maxAge=3600&logo=github&logoColor=fff&color=00c7be" alt="Contributors" /></a>
+    </p>
 </div>
 
 ## About
@@ -17,9 +20,9 @@ This repository contains the Schematics of NanoForge. Check [releases][github-re
 
 ## Usage
 
-To use Nanoforge Schematics, please refer to the [Schematics documentation][cli-source] !
+To use Nanoforge Schematics, please refer to the [CLI documentation][cli-source] !
 
-First, install the Schematics :
+First, install the CLI :
 
 ```bash
 npm install -g @nanoforge-dev/cli
@@ -31,63 +34,14 @@ And then create a new project :
 nf new
 ```
 
-## Commands
+## Schematics
 
-The nanoforge client interface has multiple commands usable :
+This repository provide multiples schematics, usable with Angular Devkit schematics.
 
-```sh
-nf [command] [options]
-```
-
-### `build`
-
-Used to build your nanoforge project.
-
-`-d, --directory [directory]` specify the directory of the nanoforge project to build.
-`-c, --config [config]` path to the config file.
-`--client-outDir [clientDirectory]` specifies the client directory.
-`--server-outDir [serverDirectory]` specifies the server directory.
-
-### `generate`
-
-Used to generate nanoforge project files from config
-
-`-d, --directory [directory]` specify the directory of the nanoforge project to build.
-`-c, --config [config]` path to the config file.
-
-### `install` or `add`
-
-Used to add a nanoforge library to your project
-
-`-d, --directory [directory]` specify the directory of the nanoforge project to build.
-
-### `new`
-
-Used to create a new nanoforge project
-
-`-d, --directory [directory]` specify the directory of your project
-`--name [name]` specify the name of your project
-`--path [path]` specify the path of your project
-`--package-manager [packageManager]` specify the package manager of your project
-`--language [language]` specify the language of your project
-`--strict` use strict mode
-`--no-strict` do not use strict mode
-`--server` create a server
-`--no-server` do not create a server
-`--init-functions` initialize functions
-`--no-init-functions` do not initialize functions
-`--skip-install` skip installing dependencies
-`--no-skip-install` do not skip installing dependencies
-
-### `start`
-
-Used to start your nanoforge project
-
-`-d, --directory [directory]` specify the directory of your project
-`-c, --config [config]` path to the config file (default: "nanoforge.config.json")
-`-p, --client-port [clientPort]` specify the port of the loader (the website to load the game)
-`--game-exposure-port [gameExposurePort]` specify the port of the game exposure
-`--server-port [serverPort]` specify the port of the server
+- `application` : Base of a Nanoforge app
+- `configuration` : Template of `nanoforge.config.json` with premade fields
+- `part-base` : Base of Nanoforge client or server
+- `part-main` : Client or server `main.ts` from a config
 
 ## Contributing
 
@@ -97,8 +51,8 @@ Please read through our [contribution guidelines][contributing] before starting 
 
 If you don't understand something in the documentation, you are experiencing problems, or you just need a gentle nudge in the right direction, please ask on [Discussions][discussions].
 
-[contributing]: https://github.com/NanoForge-dev/Schematics/blob/main/.github/CONTRIBUTING.md
-[discussions]: https://github.com/NanoForge-dev/Schematics/discussions
-[cli-source]: https://github.com/NanoForge-dev/Schematics
-[github-releases]: https://github.com/NanoForge-dev/Schematics/releases
-[good-first-issue]: https://github.com/NanoForge-dev/Schematics/contribute
+[contributing]: https://github.com/NanoForge-dev/schematics/blob/main/.github/CONTRIBUTING.md
+[discussions]: https://github.com/NanoForge-dev/schematics/discussions
+[cli-source]: https://github.com/NanoForge-dev/CLI
+[github-releases]: https://github.com/NanoForge-dev/schematics/releases
+[good-first-issue]: https://github.com/NanoForge-dev/schematics/contribute
