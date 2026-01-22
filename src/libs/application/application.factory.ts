@@ -44,6 +44,7 @@ const generate = (options: ApplicationOptions, path: string): Source => {
     template({
       ...strings,
       ...options,
+      package: "package",
     }),
     move(path),
   ]);
