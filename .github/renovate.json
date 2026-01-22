@@ -5,5 +5,10 @@
   "rebaseWhen": "conflicted",
   "labels": ["dependencies"],
   "reviewers": ["Exeloo"],
-  "ignorePaths": ["**/node_modules/**", "**/libs/*/files/**"]
+  "packageRules": [
+    {
+      "matchFiles": ["**/libs/*/files/**/package.json"],
+      "enabled": false
+    }
+  ]
 }
