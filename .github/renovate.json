@@ -4,5 +4,6 @@
   "baseBranches": ["main"],
   "rebaseWhen": "conflicted",
   "labels": ["dependencies"],
-  "reviewers": ["Exeloo"]
+  "reviewers": ["Exeloo"],
+  "ignorePaths": ["**/node_modules/**", "src/libs/**"]
 }
