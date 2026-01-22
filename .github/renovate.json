@@ -5,5 +5,5 @@
   "rebaseWhen": "conflicted",
   "labels": ["dependencies"],
   "reviewers": ["Exeloo"],
-  "ignorePaths": ["**/node_modules/**", "src/libs/**"]
+  "ignorePaths": ["**/node_modules/**", "**/src/libs/**"]
 }
