@@ -76,7 +76,7 @@
     "@nanoforge-dev/utils-prettier-config": "catalog:lint",
     "@trivago/prettier-plugin-sort-imports": "catalog:lint",
     "@types/node": "catalog:core",
-    "@vitest/coverage-v8": "^4.0.18",
+    "@vitest/coverage-v8": "catalog:tests",
     "cpx2": "catalog:build",
     "eslint": "catalog:lint",
     "husky": "catalog:ci",
@@ -84,7 +84,7 @@
     "prettier": "catalog:lint",
     "tsup": "catalog:build",
     "typescript": "catalog:build",
-    "vitest": "^4.0.18"
+    "vitest": "catalog:tests"
   },
   "packageManager": "pnpm@10.29.3",
   "engines": {
