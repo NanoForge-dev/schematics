@@ -9,9 +9,11 @@ describe("configuration schematic", () => {
 
   describe("on an empty tree", () => {
     let tree: UnitTestTree;
+    let config: Record<string, any>;
 
     beforeAll(async () => {
       tree = await runner.runSchematic("configuration", { name: "my-app" });
+      config = JSON.parse(tree.readContent("/my-app/nanoforge.config.json"));
     });
 
     it("should generate nanoforge.config.json", () => {
@@ -19,23 +21,57 @@ describe("configuration schematic", () => {
     });
 
     it("should create a valid JSON config file", () => {
-      const content = tree.readContent("/my-app/nanoforge.config.json");
-      expect(() => JSON.parse(content)).not.toThrow();
+      expect(() => JSON.parse(tree.readContent("/my-app/nanoforge.config.json"))).not.toThrow();
+    });
+
+    it("should include default client build config", () => {
+      expect(config.client).toBeDefined();
+      expect(config.client.build.entryFile).toBe("client/main.ts");
+      expect(config.client.build.outDir).toBe(".nanoforge/client");
+    });
+
+    it("should include default client runtime config", () => {
+      expect(config.client.runtime.dir).toBe(".nanoforge/client");
+    });
+
+    it("should have server disabled", () => {
+      expect(config.server.enable).toBe(false);
     });
   });
 
   describe("with server enabled", () => {
     let tree: UnitTestTree;
+    let config: Record<string, any>;
 
     beforeAll(async () => {
       tree = await runner.runSchematic("configuration", {
         name: "my-app",
         server: true,
       });
+      config = JSON.parse(tree.readContent("/my-app/nanoforge.config.json"));
     });
 
     it("should generate config file", () => {
       expect(tree.files).toContain("/my-app/nanoforge.config.json");
+    });
+
+    it("should include server config with enable flag", () => {
+      expect(config.server).toBeDefined();
+      expect(config.server.enable).toBe(true);
+    });
+
+    it("should include server build config", () => {
+      expect(config.server.build.entryFile).toBe("server/main.ts");
+      expect(config.server.build.outDir).toBe(".nanoforge/server");
+    });
+
+    it("should include server runtime config", () => {
+      expect(config.server.runtime.dir).toBe(".nanoforge/server");
+    });
+
+    it("should still include client config", () => {
+      expect(config.client).toBeDefined();
+      expect(config.client.build.entryFile).toBe("client/main.ts");
     });
   });
 
