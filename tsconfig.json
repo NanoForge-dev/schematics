@@ -51,5 +51,5 @@
     }
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules", "dist", "src/libs/**/files/**/*"]
+  "exclude": ["node_modules", "dist", "e2e", "src/libs/**/files/**/*", "src/**/*.spec.ts"]
 }

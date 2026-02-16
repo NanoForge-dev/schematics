@@ -1,6 +1,6 @@
 import { type Config } from "@utils/config/config.type";
 import { deepMerge } from "@utils/object";
-import { type DeepPartial } from "@utils/type";
+import { type DeepPartial } from "@utils/types";
 
 import { DEFAULT_CONFIG, DEFAULT_SERVER_CONFIG } from "~/defaults";
 

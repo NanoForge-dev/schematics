@@ -1,6 +1,6 @@
 import { InitFunctionEnum } from "@utils/main/enums";
 
-import { LIBS_FUNCTIONS_NAME } from "./conts";
+import { LIBS_FUNCTIONS_NAME } from "./const";
 import {
   type SaveComponent,
   type SaveEntity,
