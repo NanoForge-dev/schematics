@@ -23,4 +23,9 @@ export interface PartBaseSchema {
    * Add init functions to the application
    */
   initFunctions?: boolean;
+
+  /**
+   * Configure a server for the application
+   */
+  server?: boolean;
 }

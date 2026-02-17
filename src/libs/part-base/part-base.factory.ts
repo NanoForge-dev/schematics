@@ -24,6 +24,7 @@ const transform = (schema: PartBaseSchema): PartBaseOptions => {
   return {
     name,
     part: schema.part,
+    server: schema.server,
     appClass: schema.part === "client" ? "NanoforgeClient" : "NanoforgeServer",
     language: schema.language ?? DEFAULT_LANGUAGE,
     initFunctions: schema.initFunctions ?? false,

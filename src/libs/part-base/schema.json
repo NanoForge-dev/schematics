@@ -32,6 +32,11 @@
       "type": "boolean",
       "description": "Add init functions to the application",
       "default": false
+    },
+    "server": {
+      "type": "boolean",
+      "description": "There is a Server in app",
+      "default": false
     }
   },
   "required": ["name", "part"]
