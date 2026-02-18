@@ -34,7 +34,7 @@
       "name": "MusicLibrary",
       "path": "@nanoforge-dev/music",
       "params": []
-    },
+    },<%= !server ? "" : "\n    {\n      \"id\": \"networkLibrary\",\n      \"type\": \"network\",\n      \"name\": \"NetworkClientLibrary\",\n      \"path\": \"@nanoforge-dev/network-client\",\n      \"params\": []\n    }," %>
     {
       "id": "soundLibrary",
       "type": "sound",

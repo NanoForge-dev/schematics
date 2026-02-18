@@ -11,16 +11,16 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.39.0",
-    "@nanoforge-dev/asset-manager": "^0.0.1",
-    "@nanoforge-dev/cli": "^0.0.1",
-    "@nanoforge-dev/common": "^0.0.1",
-    "@nanoforge-dev/config": "^0.0.1",
-    "@nanoforge-dev/core": "^0.0.1",
-    "@nanoforge-dev/ecs-client": "^0.0.1",<%= !!server ? "\n    \"@nanoforge-dev/ecs-server\": \"^0.0.1\"," : "" %>
-    "@nanoforge-dev/graphics-2d": "^0.0.1",
-    "@nanoforge-dev/input": "^0.0.1",
-    "@nanoforge-dev/music": "^0.0.1",
-    "@nanoforge-dev/sound": "^0.0.1",
+    "@nanoforge-dev/asset-manager": "^1",
+    "@nanoforge-dev/cli": "latest",
+    "@nanoforge-dev/common": "^1",
+    "@nanoforge-dev/config": "^1",
+    "@nanoforge-dev/core": "^1",
+    "@nanoforge-dev/ecs-client": "^1",<%= !!server ? "\n    \"@nanoforge-dev/ecs-server\": \"^1\"," : "" %>
+    "@nanoforge-dev/graphics-2d": "^1",
+    "@nanoforge-dev/input": "^1",
+    "@nanoforge-dev/music": "^1",<%= !!server ? "\n    \"@nanoforge-dev/network-client\": \"^1\"," : "" %><%= !!server ? "\n    \"@nanoforge-dev/network-server\": \"^1\"," : "" %>
+    "@nanoforge-dev/sound": "^1",
     "eslint": "^9.39.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.4",
