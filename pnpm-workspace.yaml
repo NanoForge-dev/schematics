@@ -21,6 +21,9 @@ catalogs:
   schematics:
     '@angular-devkit/core': ^21.1.1
     '@angular-devkit/schematics': ^21.1.1
+  tests:
+    '@vitest/coverage-v8': ^4.0.18
+    vitest: ^4.0.18
 
 onlyBuiltDependencies:
   - esbuild
