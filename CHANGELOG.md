@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@nanoforge-dev/schematics@1.1.0](https://github.com/NanoForge-dev/schematics/tree/@nanoforge-dev/schematics@1.1.0) - (2026-02-19)
+
+## Documentation
+
+- Add schematics docs (#61) ([7735324](https://github.com/NanoForge-dev/schematics/commit/7735324bcb5438929a24481e157677cc25f7457c)) by @Exeloo
+- Fix contribution (#47) ([b6ad53e](https://github.com/NanoForge-dev/schematics/commit/b6ad53e9f77b6f6619b5090f08e9d3fb94e90a74)) by @Exeloo
+- Add contributing docs and actions (#41) ([91eea94](https://github.com/NanoForge-dev/schematics/commit/91eea949ea785a03ca66d3a6e07d30d8e24df815)) by @Exeloo
+
+## Features
+
+- Add network and fix versions in app base (#70) ([6d5963a](https://github.com/NanoForge-dev/schematics/commit/6d5963a954e7a27c442377ecb70716a43e479717)) by @Exeloo
+- Update and add pre-release (#48) ([49422f7](https://github.com/NanoForge-dev/schematics/commit/49422f7ad9e0595378cf6e8b44dc7711d09b8cfa)) by @Exeloo
+
+## Testing
+
+- Add unit tests and e2e tests (#67) ([8eef6b5](https://github.com/NanoForge-dev/schematics/commit/8eef6b51984d1187d3f0b936d670e362ad0224c6)) by @Exeloo
+
 # [1.0.2](https://github.com/NanoForge-dev/schematics/compare/1.0.1...1.0.2) - (2025-12-06)
 
 ## Bug Fixes
