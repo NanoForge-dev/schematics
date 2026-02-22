@@ -1,0 +1,39 @@
+name: Synchronize Docs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "docs/**"
+  workflow_dispatch:
+
+jobs:
+  synchronize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout schematics
+        uses: actions/checkout@v5
+        with:
+          path: schematics
+
+      - name: Checkout docs
+        uses: actions/checkout@v5
+        with:
+          path: docs
+          repository: nanoforge-dev/docs
+          token: ${{ secrets.ACTIONS_KEY }}
+
+      - name: setup git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "username@users.noreply.github.com"
+
+      - name: synchronize docs
+        run: |
+          mkdir -p docs/schematics
+          cp schematics/docs/. -r docs/schematics
+          cd docs
+          git add .
+          git commit -m "chore(schematics): updating docs"
+          git push origin main
