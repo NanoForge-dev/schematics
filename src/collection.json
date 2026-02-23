@@ -20,6 +20,11 @@
       "factory": "./libs/part-main/part-main.factory#main",
       "description": "Create a Main file for client or server.",
       "schema": "./libs/part-main/schema.json"
+    },
+    "docker": {
+      "factory": "./libs/docker/docker.factory#main",
+      "description": "Create a Main file for client or server.",
+      "schema": "./libs/docker/schema.json"
     }
   }
 }
