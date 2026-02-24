@@ -1,11 +1,11 @@
-import { type Path, join, strings } from "@angular-devkit/core";
+import { type Path, strings } from "@angular-devkit/core";
 import {
   type Rule,
   type Source,
   apply,
+  applyTemplates,
   mergeWith,
   move,
-  template,
   url,
 } from "@angular-devkit/schematics";
 
@@ -28,16 +28,16 @@ const transform = (schema: DockerSchema): DockerOptions => {
 };
 
 const generate = (options: DockerOptions, path: string): Source => {
-  return apply(url(join("./files" as Path, options.packageManager)), [
-    template({
+  return apply(url("./files" as Path), [
+    applyTemplates({
       ...strings,
       ...options,
+      dot: ".",
     }),
     move(path),
   ]);
 };
 
-// Phase 3: Export factory that merges generated files
 export const main = (schema: DockerSchema): Rule => {
   const options = transform(schema);
   return mergeWith(generate(options, schema.directory ?? options.name));
