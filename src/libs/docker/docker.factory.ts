@@ -3,9 +3,9 @@ import {
   type Rule,
   type Source,
   apply,
-  applyTemplates,
   mergeWith,
   move,
+  template,
   url,
 } from "@angular-devkit/schematics";
 
@@ -29,10 +29,9 @@ const transform = (schema: DockerSchema): DockerOptions => {
 
 const generate = (options: DockerOptions, path: string): Source => {
   return apply(url("./files" as Path), [
-    applyTemplates({
+    template({
       ...strings,
       ...options,
-      dot: ".",
     }),
     move(path),
   ]);

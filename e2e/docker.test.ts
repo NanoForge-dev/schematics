@@ -22,12 +22,12 @@ describe("docker schematic", () => {
 
         it("should create Dockerfile", () => {
           expect(tree.files).toContain(`/${packageManager}-test-app/Dockerfile`);
-          //   expect(tree.files).toContain(`/${packageManager}-test-app/.dockerignore`); # Currently not generated we do not know why.
+          expect(tree.files).toContain(`/${packageManager}-test-app/.dockerignore`);
         });
 
         it("should create docker file with install command", () => {
           const content = tree.readContent(`/${packageManager}-test-app/Dockerfile`);
-          expect(content).toContain(`RUN ${packageManager} install --frozen-lockfile`);
+          expect(content).toContain(`RUN ${packageManager} install`);
         });
 
         it("should create docker file with build command", () => {
@@ -37,7 +37,7 @@ describe("docker schematic", () => {
 
         it("should create docker file with start command", () => {
           const content = tree.readContent(`/${packageManager}-test-app/Dockerfile`);
-          expect(content).toContain(`CMD ["${packageManager}", "start"]`);
+          expect(content).toContain(`CMD ["${packageManager}", "run", "start"]`);
         });
       },
     );

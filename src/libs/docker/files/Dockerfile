@@ -25,10 +25,15 @@ COPY pnpm-lock.yaml ./
 <% } else if (packageManager === 'bun') { %>
 COPY bun.lock ./
 <% } %>
-
+<% if (packageManager === 'npm') { %>
+RUN npm install --no-lockfile
+<% } if (packageManager === 'pnpm') { %>
+RUN pnpm install --frozen-lockfile --allow-build=bun
+<% } else { %>
 RUN <%= packageManager %> install --frozen-lockfile
+<% } %>
 COPY . .
 
 RUN <%= packageManager %> run build
 
-CMD ["<%= packageManager %>", "start"]
+CMD ["<%= packageManager %>", "run", "start"]
