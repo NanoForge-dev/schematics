@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@nanoforge-dev/schematics@1.2.0](https://github.com/NanoForge-dev/schematics/compare/@nanoforge-dev/schematics@1.1.0...@nanoforge-dev/schematics@1.2.0) - (2026-02-27)
+
+## Features
+
+- Setup docker schema (#75) ([cf7ead5](https://github.com/NanoForge-dev/schematics/commit/cf7ead5c49164a85e3beb65be3c73c842cd14e58)) by @MartinFillon
+
+### New Contributors
+
+- @MartinFillon made their first contribution in #75
+- @dependabot[bot] made their first contribution in #76
+
 # [@nanoforge-dev/schematics@1.1.0](https://github.com/NanoForge-dev/schematics/tree/@nanoforge-dev/schematics@1.1.0) - (2026-02-19)
 
 ## Documentation
