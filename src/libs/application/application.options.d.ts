@@ -30,6 +30,11 @@ export interface ApplicationOptions {
   strict: boolean;
 
   /**
+   * Generate lint files
+   */
+  lint: boolean;
+
+  /**
    * The used package manager
    */
   packageManager: "npm" | "yarn" | "pnpm" | "bun";

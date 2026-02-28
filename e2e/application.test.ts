@@ -9,9 +9,11 @@ describe("application schematic", () => {
 
   describe("with TypeScript (default)", () => {
     let tree: UnitTestTree;
+    let packageJson: any;
 
     beforeAll(async () => {
       tree = await runner.runSchematic("application", { name: "my-app" });
+      packageJson = JSON.parse(tree.readContent("/my-app/package.json"));
     });
 
     it("should generate project files", () => {
@@ -23,13 +25,15 @@ describe("application schematic", () => {
     });
 
     it("should set the project name in package.json", () => {
-      const packageJson = JSON.parse(tree.readContent("/my-app/package.json"));
       expect(packageJson.name).toBe("my-app");
     });
 
     it("should not include ecs-server by default", () => {
-      const packageJson = JSON.parse(tree.readContent("/my-app/package.json"));
       expect(packageJson.devDependencies["@nanoforge-dev/ecs-server"]).toBeUndefined();
+    });
+
+    it("should not include pnpm config by default", () => {
+      expect(packageJson).not.toHaveProperty("pnpm");
     });
   });
 
@@ -47,6 +51,27 @@ describe("application schematic", () => {
       expect(tree.files).toContain("/js-app/package.json");
       expect(tree.files).toContain("/js-app/jsconfig.json");
       expect(tree.files).not.toContain("/js-app/tsconfig.json");
+    });
+  });
+
+  describe("with JavaScript and no lint", () => {
+    let tree: UnitTestTree;
+
+    beforeAll(async () => {
+      tree = await runner.runSchematic("application", {
+        name: "js-no-lint-app",
+        language: "js",
+        lint: false,
+      });
+    });
+
+    it("should generate JS project files without lint files", () => {
+      expect(tree.files).toContain("/js-no-lint-app/package.json");
+      expect(tree.files).not.toContain("/js-no-lint-app/eslint.config.json");
+      expect(tree.files).not.toContain("/js-no-lint-app/prettier.config.json");
+      expect(tree.files).not.toContain("/js-no-lint-app/.prettierignore");
+      expect(tree.files).not.toContain("/js-no-lint-app/jsconfig.json");
+      expect(tree.files).not.toContain("/js-no-lint-app/tsconfig.json");
     });
   });
 
@@ -93,6 +118,21 @@ describe("application schematic", () => {
         directory: "custom-dir",
       });
       expect(tree.files).toContain("/custom-dir/package.json");
+    });
+  });
+
+  describe("with pnpm", () => {
+    it("should generate specifications of pnpm", async () => {
+      const tree = await runner.runSchematic("application", {
+        name: "pnpm-app",
+        packageManager: "pnpm",
+        server: true,
+      });
+      expect(tree.files).toContain("/pnpm-app/package.json");
+      const packageJson = JSON.parse(tree.readContent("/pnpm-app/package.json"));
+      expect(packageJson).toHaveProperty("pnpm", {
+        neverBuiltDependencies: [],
+      });
     });
   });
 

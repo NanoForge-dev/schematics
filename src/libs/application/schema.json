@@ -43,6 +43,11 @@
       "description": "With strict mode (TypeScript or JavaScript but only on compatible editor)",
       "default": true
     },
+    "lint": {
+      "type": "boolean",
+      "description": "Generate lint files",
+      "default": true
+    },
     "packageManager": {
       "type": "string",
       "enum": ["npm", "yarn", "pnpm", "bun"],
