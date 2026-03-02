@@ -1,13 +1,16 @@
 import { type Path, join, strings } from "@angular-devkit/core";
 import {
   type Rule,
+  type SchematicContext,
   type Source,
+  type Tree,
   apply,
+  applyTemplates,
   mergeWith,
   move,
-  template,
   url,
 } from "@angular-devkit/schematics";
+import { firstValueFrom } from "rxjs";
 
 import { toKebabCase } from "@utils/formatting";
 import { resolvePackageName } from "@utils/name";
@@ -34,6 +37,7 @@ const transform = (schema: ApplicationSchema): ApplicationOptions => {
     description: schema.description ?? DEFAULT_DESCRIPTION,
     language: schema.language ?? DEFAULT_LANGUAGE,
     strict: schema.strict ?? true,
+    lint: schema.lint ?? true,
     packageManager: schema.packageManager ?? DEFAULT_PACKAGE_MANAGER,
     server: schema.server ?? false,
   };
@@ -41,10 +45,9 @@ const transform = (schema: ApplicationSchema): ApplicationOptions => {
 
 const generate = (options: ApplicationOptions, path: string): Source => {
   return apply(url(join("./files" as Path, options.language)), [
-    template({
+    applyTemplates({
       ...strings,
       ...options,
-      package: "package",
     }),
     move(path),
   ]);
@@ -52,6 +55,24 @@ const generate = (options: ApplicationOptions, path: string): Source => {
 
 export const main = (schema: ApplicationSchema): Rule => {
   const options = transform(schema);
+  const path = schema.directory ?? options.name;
 
-  return mergeWith(generate(options, schema.directory ?? options.name));
+  return async (baseTree: Tree, context: SchematicContext) => {
+    let tree = await mergeWith(generate(options, path))(baseTree, context);
+    if (!tree) return tree;
+    if (!("delete" in tree)) {
+      if (typeof tree === "function") return tree;
+      tree = await firstValueFrom(tree);
+    }
+
+    if (!options.lint) {
+      const basePath = join("/" as Path, path);
+      tree.delete(join(basePath, "eslint.config.js"));
+      tree.delete(join(basePath, "prettier.config.js"));
+      tree.delete(join(basePath, ".prettierignore"));
+      if (options.language === "js") tree.delete(join(basePath, "jsconfig.json"));
+    }
+
+    return tree;
+  };
 };

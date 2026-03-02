@@ -65,7 +65,8 @@
   },
   "dependencies": {
     "@angular-devkit/core": "catalog:schematics",
-    "@angular-devkit/schematics": "catalog:schematics"
+    "@angular-devkit/schematics": "catalog:schematics",
+    "rxjs": "catalog:schematics"
   },
   "devDependencies": {
     "@commitlint/cli": "catalog:ci",
