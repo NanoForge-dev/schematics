@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@nanoforge-dev/schematics@1.2.2](https://github.com/NanoForge-dev/schematics/compare/@nanoforge-dev/schematics@1.2.1...@nanoforge-dev/schematics@1.2.2) - (2026-03-15)
+
+## Bug Fixes
+
+- Fields does not replace on application (#86) ([d252953](https://github.com/NanoForge-dev/schematics/commit/d252953d4aef98a3ea505bb7bd45701f139d5599)) by @Exeloo
+
 # [@nanoforge-dev/schematics@1.2.1](https://github.com/NanoForge-dev/schematics/compare/@nanoforge-dev/schematics@1.2.0...@nanoforge-dev/schematics@1.2.1) - (2026-03-15)
 
 ## Bug Fixes
