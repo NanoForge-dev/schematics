@@ -1,4 +1,4 @@
-import { type Path, join, strings } from "@angular-devkit/core";
+import { type Path, join, normalize, strings } from "@angular-devkit/core";
 import {
   type Rule,
   type SchematicContext,
@@ -49,7 +49,7 @@ const generate = (options: ApplicationOptions, path: string): Source => {
       ...strings,
       ...options,
     }),
-    move(path),
+    move(normalize(path)),
   ]);
 };
 

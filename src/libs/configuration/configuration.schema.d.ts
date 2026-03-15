@@ -13,4 +13,9 @@ export interface ConfigurationSchema {
    * Configure a server for the application
    */
   server?: boolean;
+
+  /**
+   * NanoForge Application language
+   */
+  language?: "js" | "ts";
 }

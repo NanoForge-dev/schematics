@@ -1,4 +1,4 @@
-import { type Path, join, strings } from "@angular-devkit/core";
+import { type Path, join, normalize, strings } from "@angular-devkit/core";
 import {
   type Rule,
   type Source,
@@ -39,7 +39,7 @@ const generate = (options: PartMainOptions, path: string): Source => {
       ...strings,
       ...options,
     }),
-    move(path),
+    move(normalize(path)),
   ];
 
   return apply(asSource(writeMain(options, path)), rules);

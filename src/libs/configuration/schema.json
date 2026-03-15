@@ -21,6 +21,12 @@
       "type": "boolean",
       "description": "Server configuration",
       "default": false
+    },
+    "language": {
+      "type": "string",
+      "enum": ["ts", "js"],
+      "description": "NanoForge application language",
+      "default": "ts"
     }
   },
   "required": ["name"]

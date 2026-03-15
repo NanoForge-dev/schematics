@@ -1,4 +1,4 @@
-import { type Path, join, strings } from "@angular-devkit/core";
+import { type Path, join, normalize, strings } from "@angular-devkit/core";
 import {
   type Rule,
   type Source,
@@ -14,20 +14,24 @@ import {
 
 import { ConfigDeclarator } from "@utils/config/config.declarator";
 import { ConfigFinder } from "@utils/config/config.finder";
-import { toKebabCase } from "@utils/formatting";
-import { resolvePackageName } from "@utils/name";
-
-import { DEFAULT_APP_NAME } from "~/defaults";
 
 import { type ConfigurationOptions } from "./configuration.options";
 import { type ConfigurationSchema } from "./configuration.schema";
 
 const transform = (schema: ConfigurationSchema): ConfigurationOptions => {
-  return {
+  const res: ConfigurationOptions = {
     server: {
       enable: schema.server ?? false,
     },
   };
+
+  if (schema.language === "js") {
+    res["client"] = { build: { entryFile: "client/main.js" } };
+    if (schema.server && "server" in res && res.server)
+      res.server["build"] = { entryFile: "server/main.js" };
+  }
+
+  return res;
 };
 
 const generate = (options: ConfigurationOptions, path: string): Source => {
@@ -36,7 +40,7 @@ const generate = (options: ConfigurationOptions, path: string): Source => {
       ...strings,
       ...options,
     }),
-    move(path),
+    move(normalize(path)),
   ]);
 };
 
@@ -57,9 +61,7 @@ const addConfiguration = (options: ConfigurationOptions, path: Path) => {
 
 export const main = (schema: ConfigurationSchema): Rule => {
   const options = transform(schema);
-  const directory =
-    schema.directory ??
-    resolvePackageName(toKebabCase(schema.name?.toString() ?? DEFAULT_APP_NAME));
+  const directory = schema.directory ?? schema.name;
 
   return branchAndMerge(
     chain([mergeWith(generate(options, directory)), addConfiguration(options, directory as Path)]),

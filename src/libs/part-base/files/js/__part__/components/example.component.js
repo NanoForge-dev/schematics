@@ -1,5 +1,5 @@
 /**
- * @typedef {import("@nanoforge-dev/ecs").EditorComponentManifest} EditorComponentManifest
+ * @typedef {import("@nanoforge-dev/ecs-<%= part %>").EditorComponentManifest} EditorComponentManifest
  */
 
 export class ExampleComponent {

@@ -13,7 +13,14 @@
       "name": "ECSServerLibrary",
       "path": "@nanoforge-dev/ecs-server",
       "params": []
-    }<%= !server ? "" : ",\n    {\n      \"id\": \"networkLibrary\",\n      \"type\": \"network\",\n      \"name\": \"NetworkServerLibrary\",\n      \"path\": \"@nanoforge-dev/network-server\",\n      \"params\": []\n    }" %>
+    }<% if (server) { %>,
+    {
+      "id": "networkLibrary",
+      "type": "network",
+      "name": "NetworkServerLibrary",
+      "path": "@nanoforge-dev/network-server",
+      "params": []
+    }<% } %>
   ],
   "components": [
     {
