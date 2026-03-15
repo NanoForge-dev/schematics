@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@nanoforge-dev/schematics@1.2.1](https://github.com/NanoForge-dev/schematics/compare/@nanoforge-dev/schematics@1.2.0...@nanoforge-dev/schematics@1.2.1) - (2026-03-15)
+
+## Bug Fixes
+
+- Use of directory variable and js issues (#84) ([9d98d1a](https://github.com/NanoForge-dev/schematics/commit/9d98d1ae977e69cfc07b4e9131bde2ea2b34964f)) by @Exeloo
+
+## Features
+
+- Add lint param handling on application (#79) ([96c2128](https://github.com/NanoForge-dev/schematics/commit/96c212817d763fc2677d28cd57f3d196c6a45f6d)) by @Exeloo
+
 # [@nanoforge-dev/schematics@1.2.0](https://github.com/NanoForge-dev/schematics/compare/@nanoforge-dev/schematics@1.1.0...@nanoforge-dev/schematics@1.2.0) - (2026-02-27)
 
 ## Features
