@@ -1,4 +1,4 @@
-import { type Path, strings } from "@angular-devkit/core";
+import { type Path, normalize, strings } from "@angular-devkit/core";
 import {
   type Rule,
   type Source,
@@ -33,7 +33,7 @@ const generate = (options: DockerOptions, path: string): Source => {
       ...strings,
       ...options,
     }),
-    move(path),
+    move(normalize(path)),
   ]);
 };
 

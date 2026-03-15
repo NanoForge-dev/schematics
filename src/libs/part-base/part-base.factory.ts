@@ -1,4 +1,4 @@
-import { type Path, join, strings } from "@angular-devkit/core";
+import { type Path, join, normalize, strings } from "@angular-devkit/core";
 import {
   type Rule,
   type Source,
@@ -38,7 +38,7 @@ const generate = (options: PartBaseOptions, path: string): Source => {
       ...options,
       nanoforgeFolder: ".nanoforge",
     }),
-    move(path),
+    move(normalize(path)),
     filter((path) => {
       const splited = path.split("/");
       return splited.at(-2) !== ".nanoforge" || splited.at(-1) === `${options.part}.save.json`;

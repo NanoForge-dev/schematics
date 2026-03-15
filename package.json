@@ -69,6 +69,7 @@
     "rxjs": "catalog:schematics"
   },
   "devDependencies": {
+    "@angular-devkit/schematics-cli": "^21.2.2",
     "@commitlint/cli": "catalog:ci",
     "@commitlint/config-conventional": "catalog:ci",
     "@favware/cliff-jumper": "catalog:ci",

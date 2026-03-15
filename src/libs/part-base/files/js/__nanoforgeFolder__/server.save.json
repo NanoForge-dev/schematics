@@ -10,10 +10,17 @@
     {
       "id": "ecsLibrary",
       "type": "component-system",
-      "name": "ECSLibrary",
-      "path": "@nanoforge-dev/ecs",
-      "params": ["\"server\""]
-    }<%= !server ? "" : ",\n    {\n      \"id\": \"networkLibrary\",\n      \"type\": \"network\",\n      \"name\": \"NetworkServerLibrary\",\n      \"path\": \"@nanoforge-dev/network-server\",\n      \"params\": []\n    }" %>
+      "name": "ECSServerLibrary",
+      "path": "@nanoforge-dev/ecs-server",
+      "params": []
+    }<% if (server) { %>,
+    {
+      "id": "networkLibrary",
+      "type": "network",
+      "name": "NetworkServerLibrary",
+      "path": "@nanoforge-dev/network-server",
+      "params": []
+    }<% } %>
   ],
   "components": [
     {
