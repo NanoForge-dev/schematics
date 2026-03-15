@@ -129,5 +129,6 @@ web_modules/
 .pnp.*
 
 ### NanoForge template
-# Compilation directory
-.nanoforge/
+# Compilation directories
+.nanoforge/client
+.nanoforge/server
