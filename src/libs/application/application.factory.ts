@@ -5,9 +5,10 @@ import {
   type Source,
   type Tree,
   apply,
-  applyTemplates,
   mergeWith,
   move,
+  renameTemplateFiles,
+  template,
   url,
 } from "@angular-devkit/schematics";
 import { firstValueFrom } from "rxjs";
@@ -45,10 +46,11 @@ const transform = (schema: ApplicationSchema): ApplicationOptions => {
 
 const generate = (options: ApplicationOptions, path: string): Source => {
   return apply(url(join("./files" as Path, options.language)), [
-    applyTemplates({
+    template({
       ...strings,
       ...options,
     }),
+    renameTemplateFiles(),
     move(normalize(path)),
   ]);
 };
