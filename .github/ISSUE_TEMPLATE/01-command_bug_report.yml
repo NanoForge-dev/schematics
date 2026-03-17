@@ -15,6 +15,7 @@ body:
       options:
         - application
         - configuration
+        - docker
         - part-base
         - part-main
         - other
