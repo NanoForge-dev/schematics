@@ -36,6 +36,11 @@
     "saveFile": {
       "type": "string",
       "description": "Save file path with components and systems in JSON format"
+    },
+    "editor": {
+      "type": "boolean",
+      "description": "Build main editor",
+      "default": false
     }
   },
   "required": ["name", "part"]

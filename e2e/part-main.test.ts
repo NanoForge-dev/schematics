@@ -171,4 +171,62 @@ describe("part-main schematic", () => {
       expect(content).toContain("await afterRun(app);");
     });
   });
+
+  describe("with custom directory", () => {
+    it("should generate main file in the specified directory", async () => {
+      const tree = await runner.runSchematic("part-main", {
+        name: "my-app",
+        part: "client",
+        language: "ts",
+        directory: "custom-dir",
+        saveFile: resolve(tmpDir, "client.save.json"),
+      });
+      expect(tree.files).toContain("/custom-dir/client/main.ts");
+      expect(tree.files).not.toContain("/my-app/client/main.ts");
+    });
+  });
+
+  describe("editor mode", () => {
+    let tree: UnitTestTree;
+
+    beforeAll(async () => {
+      tree = await runner.runSchematic("part-main", {
+        name: "my-app",
+        part: "client",
+        language: "ts",
+        editor: true,
+        saveFile: resolve(tmpDir, "client.save.json"),
+      });
+    });
+
+    it("should generate the editor main file under .nanoforge/editor", () => {
+      expect(tree.files).toContain("/my-app/.nanoforge/editor/client/main.ts");
+    });
+
+    it("should import from @nanoforge-dev/core-editor", () => {
+      const content = tree.readContent("/my-app/.nanoforge/editor/client/main.ts");
+      expect(content).toContain('from "@nanoforge-dev/core-editor"');
+    });
+
+    it("should use IEditorRunOptions type", () => {
+      const content = tree.readContent("/my-app/.nanoforge/editor/client/main.ts");
+      expect(content).toContain("IEditorRunOptions");
+      expect(content).toContain("export async function main(options: IEditorRunOptions)");
+    });
+
+    it("should use entity params from editor save", () => {
+      const content = tree.readContent("/my-app/.nanoforge/editor/client/main.ts");
+      expect(content).toContain("options.editor.save.entities[0].components[0].params[0]");
+    });
+
+    it("should import components and systems with relative path to root", () => {
+      const content = tree.readContent("/my-app/.nanoforge/editor/client/main.ts");
+      expect(content).toContain(
+        'import { ExampleComponent } from "../../../client/components/example.component"',
+      );
+      expect(content).toContain(
+        'import { exampleSystem } from "../../../client/systems/example.system"',
+      );
+    });
+  });
 });

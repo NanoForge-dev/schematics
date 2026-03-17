@@ -28,4 +28,9 @@ export interface PartMainSchema {
    * Save file path with components and systems in JSON format
    */
   saveFile?: string;
+
+  /**
+   * Build main editor
+   */
+  editor?: boolean;
 }

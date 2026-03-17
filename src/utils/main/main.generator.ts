@@ -1,4 +1,5 @@
 import { InitFunctionEnum } from "@utils/main/enums";
+import { joinRelative } from "@utils/path";
 
 import { LIBS_FUNCTIONS_NAME } from "./const";
 import {
@@ -12,32 +13,52 @@ import {
 export class MainGenerator {
   private buffer = "";
   private indentation = 0;
+  private readonly editor: boolean;
+  private readonly pathToRoot: string;
+
+  constructor(editor: boolean = false, pathToRoot: string = "") {
+    this.editor = editor;
+    this.pathToRoot = pathToRoot;
+  }
 
   toString(): string {
     return this.buffer;
   }
 
   generateBaseImports(hasTypes: boolean): MainGenerator {
-    if (hasTypes) this.writeLine(`import { type IRunOptions } from "@nanoforge-dev/common";`);
-    this.writeLine(`import { NanoforgeFactory } from "@nanoforge-dev/core";`);
+    if (this.editor) {
+      if (hasTypes)
+        this.writeLine(
+          `import { type IEditorRunOptions, NanoforgeFactory } from "@nanoforge-dev/core-editor";`,
+        );
+      else this.writeLine(`import { NanoforgeFactory } from "@nanoforge-dev/core-editor";`);
+    } else {
+      if (hasTypes) this.writeLine(`import { type IRunOptions } from "@nanoforge-dev/common";`);
+      this.writeLine(`import { NanoforgeFactory } from "@nanoforge-dev/core";`);
+    }
+
     this.endSection();
     return this;
   }
 
   generateLibsImports(libs: SaveLibrary[]): MainGenerator {
-    return this.generateImports(libs);
+    return this.generateImports(libs, false);
   }
 
   generateComponentsImports(libs: SaveComponent[]): MainGenerator {
-    return this.generateImports(libs);
+    return this.generateImports(libs, true);
   }
 
   generateSystemsImports(libs: SaveSystem[]): MainGenerator {
-    return this.generateImports(libs);
+    return this.generateImports(libs, true);
   }
 
   generateMainFunction(hasTypes: boolean, cb: (generator: MainGenerator) => void): MainGenerator {
-    this.writeLine(`export async function main(options${hasTypes ? ": IRunOptions" : ""}) {`);
+    if (this.editor)
+      this.writeLine(
+        `export async function main(options${hasTypes ? ": IEditorRunOptions" : ""}) {`,
+      );
+    else this.writeLine(`export async function main(options${hasTypes ? ": IRunOptions" : ""}) {`);
     this.indentation += 1;
     cb(this);
     this.indentation -= 1;
@@ -84,7 +105,7 @@ export class MainGenerator {
   }
 
   generateEntities(entities: SaveEntity[]): MainGenerator {
-    entities.forEach((entity) => this.generateEntity(entity));
+    entities.forEach((entity, index) => this.generateEntity(entity, index));
     return this;
   }
 
@@ -101,14 +122,17 @@ export class MainGenerator {
 
   generateInitFunctionsImportsIfNeeded(needed: boolean): MainGenerator {
     if (!needed) return this;
-    return this.generateImports([
-      { name: "afterInit", path: "./init/after-init" },
-      { name: "afterRegistryInit", path: "./init/after-registry-init" },
-      { name: "afterRun", path: "./init/after-run" },
-      { name: "beforeInit", path: "./init/before-init" },
-      { name: "beforeRegistryInit", path: "./init/before-registry-init" },
-      { name: "beforeRun", path: "./init/before-run" },
-    ]);
+    return this.generateImports(
+      [
+        { name: "afterInit", path: "./init/after-init" },
+        { name: "afterRegistryInit", path: "./init/after-registry-init" },
+        { name: "afterRun", path: "./init/after-run" },
+        { name: "beforeInit", path: "./init/before-init" },
+        { name: "beforeRegistryInit", path: "./init/before-registry-init" },
+        { name: "beforeRun", path: "./init/before-run" },
+      ],
+      true,
+    );
   }
 
   private generateInitFunction(func: InitFunctionEnum): MainGenerator {
@@ -122,19 +146,29 @@ export class MainGenerator {
     return this;
   }
 
-  private generateImports(els: { name: string; path: string }[]): MainGenerator {
+  private generateImports(els: { name: string; path: string }[], relative: boolean): MainGenerator {
     els
       .sort((a, b) => a.path.localeCompare(b.path))
-      .forEach(({ name, path }) => this.writeLine(`import { ${name} } from "${path}";`));
+      .forEach(({ name, path }) =>
+        this.writeLine(
+          `import { ${name} } from "${relative ? joinRelative(this.pathToRoot, path) : path}";`,
+        ),
+      );
     this.endSection();
     return this;
   }
 
-  private generateEntity(entity: SaveEntity): void {
+  private generateEntity(entity: SaveEntity, entityIndex: number): void {
     this.writeLine(`const ${entity.id} = registry.spawnEntity();`);
-    entity.components.forEach(({ name, params }) =>
-      this.writeLine(`registry.addComponent(${entity.id}, new ${name}(${params.join(", ")}));`),
-    );
+    entity.components.forEach(({ name, params: rawParams }, componentIndex) => {
+      const params = !this.editor
+        ? rawParams
+        : rawParams.map(
+            (_param, index) =>
+              `options.editor.save.entities[${entityIndex}].components[${componentIndex}].params[${index}]`,
+          );
+      this.writeLine(`registry.addComponent(${entity.id}, new ${name}(${params.join(", ")}));`);
+    });
     this.endSection();
   }
 
