@@ -1,10 +1,5 @@
 export interface PartBaseOptions {
   /**
-   * NanoForge application name
-   */
-  name: string;
-
-  /**
    * The part of the application to generate
    */
   part: "client" | "server";
@@ -15,17 +10,12 @@ export interface PartBaseOptions {
   appClass: string;
 
   /**
-   * NanoForge Application language
-   */
-  language: "js" | "ts";
-
-  /**
-   * Add init functions to the application
-   */
-  initFunctions: boolean;
-
-  /**
    * Configure a server for the application
    */
-  server?: boolean;
+  server: boolean;
+
+  /**
+   * Name of Nanoforge folder
+   */
+  nanoforgeFolder: string;
 }

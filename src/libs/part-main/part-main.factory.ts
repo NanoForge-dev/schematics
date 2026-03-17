@@ -9,31 +9,21 @@ import {
   move,
   template,
 } from "@angular-devkit/schematics";
-import * as fs from "node:fs";
+import * as fs from "fs";
 
-import { toKebabCase } from "@utils/formatting";
 import { generateMain } from "@utils/main/main-functions";
 import { type Save } from "@utils/main/save.type";
-import { resolvePackageName } from "@utils/name";
-
-import { DEFAULT_APP_NAME, DEFAULT_LANGUAGE } from "~/defaults";
 
 import { type PartMainOptions } from "./part-main.options";
 import { type PartMainSchema } from "./part-main.schema";
 
 const transform = (schema: PartMainSchema): PartMainOptions => {
-  const name = resolvePackageName(toKebabCase(schema.name?.toString() ?? DEFAULT_APP_NAME));
+  void schema;
 
-  return {
-    name,
-    part: schema.part,
-    language: schema.language ?? DEFAULT_LANGUAGE,
-    initFunctions: schema.initFunctions ?? false,
-    saveFile: schema.saveFile,
-  };
+  return {};
 };
 
-const generate = (options: PartMainOptions, path: string, editor: boolean = false): Source => {
+const generate = (options: PartMainOptions, path: string, schema: PartMainSchema): Source => {
   const rules = [
     template({
       ...strings,
@@ -42,17 +32,23 @@ const generate = (options: PartMainOptions, path: string, editor: boolean = fals
     move(normalize(path)),
   ];
 
-  return apply(asSource(writeMain(options, path, editor)), rules);
+  return apply(asSource(writeMain(schema, path)), rules);
 };
 
-const writeMain = (options: PartMainOptions, path: string, editor: boolean) => {
+const getMainPath = (schema: PartMainSchema): string => {
+  if (schema.outFile) return schema.outFile;
+  if (schema.editor)
+    return join(".nanoforge/editor" as Path, schema.part, `main.${schema.language}`);
+  return join(schema.part as Path, `main.${schema.language}`);
+};
+
+const writeMain = (schema: PartMainSchema, path: string) => {
   return (tree: Tree) => {
-    const save = getSave(path, options.part, options.saveFile);
+    const save = getSave(path, schema.part, schema.saveFile);
 
-    let resPath = join(options.part as Path, `main.${options.language}`);
-    if (editor) resPath = join(".nanoforge/editor" as Path, resPath);
+    const resPath = getMainPath(schema);
 
-    const content = generateMain(options, save, editor);
+    const content = generateMain(schema, save);
     fs.rmSync(join(path as Path, resPath), { force: true });
     tree.create(resPath, content);
     return tree;
@@ -68,5 +64,5 @@ const getSave = (path: string, part: "client" | "server", saveFile?: string): Sa
 export const main = (schema: PartMainSchema): Rule => {
   const options = transform(schema);
 
-  return mergeWith(generate(options, schema.directory ?? options.name, schema.editor));
+  return mergeWith(generate(options, schema.directory, schema));
 };

@@ -4,25 +4,16 @@
   "title": "NanoForge Base Docker Options Schema",
   "type": "object",
   "properties": {
-    "name": {
+    "directory": {
       "type": "string",
-      "description": "The name of the application",
-      "$default": {
-        "$source": "argv",
-        "index": 0
-      },
-      "x-prompt": "What name would you like to use for the new project ?"
+      "description": "NanoForge application destination directory",
+      "default": "."
     },
     "packageManager": {
       "type": "string",
       "enum": ["npm", "yarn", "pnpm", "bun"],
       "description": "NanoForge application package manager",
       "default": "npm"
-    },
-    "directory": {
-      "type": "string",
-      "description": "NanoForge application destination directory"
     }
-  },
-  "required": ["name"]
+  }
 }

@@ -4,23 +4,15 @@
   "title": "NanoForge Part Base Options Schema",
   "type": "object",
   "properties": {
-    "name": {
+    "directory": {
       "type": "string",
-      "description": "The name of the application",
-      "$default": {
-        "$source": "argv",
-        "index": 0
-      },
-      "x-prompt": "What name would you like to use for the new project ?"
+      "description": "NanoForge application destination directory",
+      "default": "."
     },
     "part": {
       "type": "string",
       "enum": ["client", "server"],
       "description": "The part of the application to generate"
-    },
-    "directory": {
-      "type": "string",
-      "description": "NanoForge application destination directory"
     },
     "language": {
       "type": "string",
@@ -39,5 +31,5 @@
       "default": false
     }
   },
-  "required": ["name", "part"]
+  "required": ["part"]
 }
