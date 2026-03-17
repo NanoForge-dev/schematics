@@ -15,7 +15,8 @@
     "@nanoforge-dev/cli": "latest",
     "@nanoforge-dev/common": "^1",
     "@nanoforge-dev/config": "^1",
-    "@nanoforge-dev/core": "^1",
+    "@nanoforge-dev/core": "^1",<% if (editor) { %>
+    "@nanoforge-dev/core-editor": "^1",<% } %>
     "@nanoforge-dev/ecs-client": "^1",<% if (server) { %>
     "@nanoforge-dev/ecs-server": "^1",<% } %>
     "@nanoforge-dev/graphics-2d": "^1",

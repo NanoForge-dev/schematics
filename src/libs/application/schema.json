@@ -54,6 +54,11 @@
       "type": "boolean",
       "description": "Configure a server for the application",
       "default": false
+    },
+    "editor": {
+      "type": "boolean",
+      "description": "Add editor dependencies",
+      "default": false
     }
   },
   "required": ["name"]

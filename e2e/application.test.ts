@@ -100,6 +100,7 @@ describe("application schematic", () => {
         version: "1.2.3",
         author: "Test Author",
         description: "A test project",
+        editor: true,
       });
     });
 
@@ -108,6 +109,7 @@ describe("application schematic", () => {
       expect(packageJson.version).toBe("1.2.3");
       expect(packageJson.author).toBe("Test Author");
       expect(packageJson.description).toBe("A test project");
+      expect(packageJson.devDependencies["@nanoforge-dev/core-editor"]).toBeDefined();
     });
   });
 
