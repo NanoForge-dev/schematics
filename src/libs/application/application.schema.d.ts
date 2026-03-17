@@ -48,4 +48,9 @@ export interface ApplicationSchema {
    * Configure a server for the application
    */
   server?: boolean;
+
+  /**
+   * Add editor dependencies
+   */
+  editor: boolean;
 }

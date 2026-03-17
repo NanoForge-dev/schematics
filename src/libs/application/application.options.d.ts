@@ -43,4 +43,9 @@ export interface ApplicationOptions {
    * Configure a server for the application
    */
   server: boolean;
+
+  /**
+   * Add editor dependencies
+   */
+  editor: boolean;
 }
