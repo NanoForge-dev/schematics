@@ -12,7 +12,7 @@ describe("part-base schematic", () => {
 
     beforeAll(async () => {
       tree = await runner.runSchematic("part-base", {
-        name: "my-app",
+        directory: "my-app",
         part: "client",
         language: "ts",
       });
@@ -50,7 +50,7 @@ describe("part-base schematic", () => {
 
     beforeAll(async () => {
       tree = await runner.runSchematic("part-base", {
-        name: "my-app",
+        directory: "my-app",
         part: "server",
         language: "ts",
       });
@@ -75,7 +75,7 @@ describe("part-base schematic", () => {
 
     beforeAll(async () => {
       tree = await runner.runSchematic("part-base", {
-        name: "my-app",
+        directory: "my-app",
         part: "client",
         language: "ts",
         initFunctions: true,
@@ -97,7 +97,7 @@ describe("part-base schematic", () => {
 
     beforeAll(async () => {
       tree = await runner.runSchematic("part-base", {
-        name: "my-app",
+        directory: "my-app",
         part: "client",
         language: "js",
       });

@@ -7,15 +7,20 @@ export interface ConfigurationSchema {
   /**
    * NanoForge application destination directory
    */
-  directory?: string;
+  directory: string;
 
   /**
    * Configure a server for the application
    */
-  server?: boolean;
+  server: boolean;
 
   /**
    * NanoForge Application language
    */
-  language?: "js" | "ts";
+  language: "js" | "ts";
+
+  /**
+   * Add init functions to the application
+   */
+  initFunctions: boolean;
 }

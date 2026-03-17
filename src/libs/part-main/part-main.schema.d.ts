@@ -1,8 +1,8 @@
 export interface PartMainSchema {
   /**
-   * NanoForge application name
+   * NanoForge application destination directory
    */
-  name: string;
+  directory: string;
 
   /**
    * The part of the application to generate
@@ -10,19 +10,14 @@ export interface PartMainSchema {
   part: "client" | "server";
 
   /**
-   * NanoForge application destination directory
-   */
-  directory?: string;
-
-  /**
    * NanoForge Application language
    */
-  language?: "js" | "ts";
+  language: "js" | "ts";
 
   /**
    * Add init functions to the application
    */
-  initFunctions?: boolean;
+  initFunctions: boolean;
 
   /**
    * Save file path with components and systems in JSON format
@@ -30,7 +25,12 @@ export interface PartMainSchema {
   saveFile?: string;
 
   /**
+   * Path of the out file
+   */
+  outFile?: string;
+
+  /**
    * Build main editor
    */
-  editor?: boolean;
+  editor: boolean;
 }

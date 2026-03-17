@@ -1,27 +1,31 @@
-interface BuildConfig {
-  entryFile: string;
-  outDir: string;
+export interface BuildConfig {
+  entry: string;
 }
 
-interface RunConfig {
-  dir: string;
+export interface EditorConfig {
+  entry: string;
+  save: string;
 }
 
-interface ClientConfig {
-  port: string;
-  gameExposurePort: string;
-  build: BuildConfig;
-  runtime: RunConfig;
-}
-
-interface ServerConfig {
+export interface ClientConfig {
   enable: boolean;
   port: string;
+  outDir: string;
   build: BuildConfig;
-  runtime: RunConfig;
+  editor: EditorConfig;
+}
+
+export interface ServerConfig {
+  enable: boolean;
+  outDir: string;
+  build: BuildConfig;
+  editor: EditorConfig;
 }
 
 export interface Config {
+  name: string;
+  language: "ts" | "js";
+  initFunctions: boolean;
   client: ClientConfig;
   server: ServerConfig;
 }

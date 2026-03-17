@@ -9,14 +9,26 @@ export interface MainOptions {
   part: "client" | "server";
   language: "js" | "ts";
   initFunctions: boolean;
+  editor: boolean;
+  outFile?: string;
 }
 
-export const generateMain = (options: MainOptions, save: Save, editor: boolean = false) => {
+export const generateMain = (options: MainOptions, save: Save) => {
   const isServer = options.part === "server";
   const hasTypes = options.language === "ts";
   const initFunctions = options.initFunctions;
 
-  return (!editor ? new MainGenerator() : new MainGenerator(true, join("../../..", options.part)))
+  return (
+    !options.editor
+      ? new MainGenerator()
+      : new MainGenerator(
+          true,
+          join(
+            "../".repeat(options.outFile ? options.outFile.split("/").length - 1 : 3),
+            options.part,
+          ),
+        )
+  )
     .generateBaseImports(hasTypes)
     .generateLibsImports(save.libraries)
     .generateInitFunctionsImportsIfNeeded(initFunctions)

@@ -10,6 +10,12 @@ schematics:configuration:
           - src/libs/configuration/*
           - src/libs/configuration/**/*
 
+schematics:docker:
+  - changed-files:
+      - any-glob-to-any-file:
+          - src/libs/docker/*
+          - src/libs/docker/**/*
+
 schematics:part-base:
   - changed-files:
       - any-glob-to-any-file:

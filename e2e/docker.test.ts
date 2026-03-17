@@ -15,7 +15,7 @@ describe("docker schematic", () => {
       (packageManager) => {
         beforeAll(async () => {
           tree = await runner.runSchematic("docker", {
-            name: `${packageManager}-test-app`,
+            directory: `${packageManager}-test-app`,
             packageManager,
           });
         });

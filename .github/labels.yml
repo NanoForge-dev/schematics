@@ -50,6 +50,10 @@
   description: "Related to configuration schematics"
   color: "aaa3dc"
 
+- name: "schematics:docker"
+  description: "Related to docker schematics"
+  color: "aaa3dc"
+
 - name: "schematics:part-base"
   description: "Related to part-base schematics"
   color: "aaa3dc"

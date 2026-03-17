@@ -60,7 +60,7 @@ describe("part-main schematic", () => {
 
     beforeAll(async () => {
       tree = await runner.runSchematic("part-main", {
-        name: "my-app",
+        directory: "my-app",
         part: "client",
         language: "ts",
         saveFile: resolve(tmpDir, "client.save.json"),
@@ -102,7 +102,7 @@ describe("part-main schematic", () => {
 
     beforeAll(async () => {
       tree = await runner.runSchematic("part-main", {
-        name: "my-app",
+        directory: "my-app",
         part: "server",
         language: "ts",
         saveFile: resolve(tmpDir, "server.save.json"),
@@ -124,7 +124,7 @@ describe("part-main schematic", () => {
 
     beforeAll(async () => {
       tree = await runner.runSchematic("part-main", {
-        name: "my-app",
+        directory: "my-app",
         part: "client",
         language: "js",
         saveFile: resolve(tmpDir, "client.save.json"),
@@ -147,7 +147,7 @@ describe("part-main schematic", () => {
 
     beforeAll(async () => {
       tree = await runner.runSchematic("part-main", {
-        name: "my-app",
+        directory: "my-app",
         part: "client",
         language: "ts",
         initFunctions: true,
@@ -172,26 +172,12 @@ describe("part-main schematic", () => {
     });
   });
 
-  describe("with custom directory", () => {
-    it("should generate main file in the specified directory", async () => {
-      const tree = await runner.runSchematic("part-main", {
-        name: "my-app",
-        part: "client",
-        language: "ts",
-        directory: "custom-dir",
-        saveFile: resolve(tmpDir, "client.save.json"),
-      });
-      expect(tree.files).toContain("/custom-dir/client/main.ts");
-      expect(tree.files).not.toContain("/my-app/client/main.ts");
-    });
-  });
-
   describe("editor mode", () => {
     let tree: UnitTestTree;
 
     beforeAll(async () => {
       tree = await runner.runSchematic("part-main", {
-        name: "my-app",
+        directory: "my-app",
         part: "client",
         language: "ts",
         editor: true,

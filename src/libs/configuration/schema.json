@@ -7,15 +7,12 @@
     "name": {
       "type": "string",
       "description": "The name of the application",
-      "$default": {
-        "$source": "argv",
-        "index": 0
-      },
-      "x-prompt": "What name would you like to use for the new project ?"
+      "default": "nanoforge-app"
     },
     "directory": {
       "type": "string",
-      "description": "NanoForge application destination directory"
+      "description": "NanoForge application destination directory",
+      "default": "."
     },
     "server": {
       "type": "boolean",
@@ -27,7 +24,11 @@
       "enum": ["ts", "js"],
       "description": "NanoForge application language",
       "default": "ts"
+    },
+    "initFunctions": {
+      "type": "boolean",
+      "description": "Add init functions to the main application",
+      "default": false
     }
-  },
-  "required": ["name"]
+  }
 }

@@ -1,8 +1,8 @@
 export interface PartBaseSchema {
   /**
-   * NanoForge application name
+   * NanoForge application destination directory
    */
-  name: string;
+  directory: string;
 
   /**
    * The part of the application to generate
@@ -10,22 +10,17 @@ export interface PartBaseSchema {
   part: "client" | "server";
 
   /**
-   * NanoForge application destination directory
-   */
-  directory?: string;
-
-  /**
    * NanoForge Application language
    */
-  language?: "js" | "ts";
+  language: "js" | "ts";
 
   /**
    * Add init functions to the application
    */
-  initFunctions?: boolean;
+  initFunctions: boolean;
 
   /**
    * Configure a server for the application
    */
-  server?: boolean;
+  server: boolean;
 }
