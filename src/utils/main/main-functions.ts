@@ -1,3 +1,5 @@
+import { join } from "path";
+
 import { InitFunctionEnum } from "@utils/main/enums";
 
 import { MainGenerator } from "./main.generator";
@@ -9,12 +11,12 @@ export interface MainOptions {
   initFunctions: boolean;
 }
 
-export const generateMain = (options: MainOptions, save: Save) => {
+export const generateMain = (options: MainOptions, save: Save, editor: boolean = false) => {
   const isServer = options.part === "server";
   const hasTypes = options.language === "ts";
   const initFunctions = options.initFunctions;
 
-  return new MainGenerator()
+  return (!editor ? new MainGenerator() : new MainGenerator(true, join("../../..", options.part)))
     .generateBaseImports(hasTypes)
     .generateLibsImports(save.libraries)
     .generateInitFunctionsImportsIfNeeded(initFunctions)

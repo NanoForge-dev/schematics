@@ -33,7 +33,7 @@ const transform = (schema: PartMainSchema): PartMainOptions => {
   };
 };
 
-const generate = (options: PartMainOptions, path: string): Source => {
+const generate = (options: PartMainOptions, path: string, editor: boolean = false): Source => {
   const rules = [
     template({
       ...strings,
@@ -42,14 +42,17 @@ const generate = (options: PartMainOptions, path: string): Source => {
     move(normalize(path)),
   ];
 
-  return apply(asSource(writeMain(options, path)), rules);
+  return apply(asSource(writeMain(options, path, editor)), rules);
 };
 
-const writeMain = (options: PartMainOptions, path: string) => {
+const writeMain = (options: PartMainOptions, path: string, editor: boolean) => {
   return (tree: Tree) => {
     const save = getSave(path, options.part, options.saveFile);
-    const resPath = join(options.part as Path, `main.${options.language}`);
-    const content = generateMain(options, save);
+
+    let resPath = join(options.part as Path, `main.${options.language}`);
+    if (editor) resPath = join(".nanoforge/editor" as Path, resPath);
+
+    const content = generateMain(options, save, editor);
     fs.rmSync(join(path as Path, resPath), { force: true });
     tree.create(resPath, content);
     return tree;
@@ -65,5 +68,5 @@ const getSave = (path: string, part: "client" | "server", saveFile?: string): Sa
 export const main = (schema: PartMainSchema): Rule => {
   const options = transform(schema);
 
-  return mergeWith(generate(options, schema.directory ?? options.name));
+  return mergeWith(generate(options, schema.directory ?? options.name, schema.editor));
 };
