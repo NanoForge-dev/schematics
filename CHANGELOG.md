@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@nanoforge-dev/schematics@2.0.0](https://github.com/NanoForge-dev/schematics/compare/@nanoforge-dev/schematics@1.2.2...@nanoforge-dev/schematics@2.0.0) - (2026-03-17)
+
+## Features
+
+- Add core editor to dependencies (#90) ([29cfa08](https://github.com/NanoForge-dev/schematics/commit/29cfa0864ee4a84fdc5aed5e790da454334dd2d5)) by @Exeloo
+- Add better handling of path option (#89) ([1e0c469](https://github.com/NanoForge-dev/schematics/commit/1e0c469f98aac91d81e21d20e36a7d9e7a94df8b)) by @Exeloo
+  - **BREAKING CHANGE:** Old schemas doesn't work anymore and config is changed
+- Add editor option to part main schematic (#88) ([c59ed27](https://github.com/NanoForge-dev/schematics/commit/c59ed2710e2db2bcd3e5c553be9c80f5ad54b732)) by @Exeloo
+
 # [@nanoforge-dev/schematics@1.2.2](https://github.com/NanoForge-dev/schematics/compare/@nanoforge-dev/schematics@1.2.1...@nanoforge-dev/schematics@1.2.2) - (2026-03-15)
 
 ## Bug Fixes
