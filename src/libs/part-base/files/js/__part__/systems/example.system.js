@@ -12,7 +12,7 @@ import { ExampleComponent } from "../components/example.component";
  * @param {Registry} registry - ECS registry instance
  * @param {Context} ctx - Nanoforge <%= part %> instance
  */
-export const exampleSystem = (registry: Registry, ctx: Context) => {
+export const exampleSystem = (registry, ctx) => {
   const entities = registry.getZipper([ExampleComponent]);
 
   entities.forEach((entity) => {
