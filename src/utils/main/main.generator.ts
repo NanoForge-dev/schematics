@@ -165,7 +165,7 @@ export class MainGenerator {
         ? paramsValues
         : paramsValues.map(
             (_param, index) =>
-              `options.editor.save.entities[${entityIndex}].components[${componentIndex}].params[${index}]`,
+              `options.editor.save.entities[${entityIndex}].components[${componentIndex}].paramsValues[${index}]`,
           );
       this.writeLine(`registry.addComponent(${entity.id}, new ${name}(${params.join(", ")}));`);
     });
