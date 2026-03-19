@@ -160,10 +160,10 @@ export class MainGenerator {
 
   private generateEntity(entity: SaveEntity, entityIndex: number): void {
     this.writeLine(`const ${entity.id} = registry.spawnEntity();`);
-    entity.components.forEach(({ name, paramsValues: rawParams }, componentIndex) => {
+    entity.components.forEach(({ name, paramsValues }, componentIndex) => {
       const params = !this.editor
-        ? rawParams
-        : rawParams.map(
+        ? paramsValues
+        : paramsValues.map(
             (_param, index) =>
               `options.editor.save.entities[${entityIndex}].components[${componentIndex}].params[${index}]`,
           );
