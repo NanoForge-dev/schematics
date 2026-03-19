@@ -202,7 +202,7 @@ describe("part-main schematic", () => {
 
     it("should use entity params from editor save", () => {
       const content = tree.readContent("/my-app/.nanoforge/editor/client/main.ts");
-      expect(content).toContain("options.editor.save.entities[0].components[0].params[0]");
+      expect(content).toContain("options.editor.save.entities[0].components[0].paramsValues[0]");
     });
 
     it("should import components and systems with relative path to root", () => {
