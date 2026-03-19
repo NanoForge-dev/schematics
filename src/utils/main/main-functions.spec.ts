@@ -84,7 +84,7 @@ describe("generateMain", () => {
       entities: [
         {
           id: "player",
-          components: [{ name: "Position", params: ["0", "0"] }],
+          components: [{ name: "Position", paramsValues: ["0", "0"] }],
         },
       ],
     };
