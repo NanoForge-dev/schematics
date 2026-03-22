@@ -40,7 +40,7 @@
       "components": [
         {
           "name": "ExampleComponent",
-          "params": ["\"example\"", "10"]
+          "params": ["example", 10]
         }
       ]
     }

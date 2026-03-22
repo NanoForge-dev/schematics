@@ -1,7 +1,8 @@
-import { InitFunctionEnum } from "@utils/main/enums";
 import { joinRelative } from "@utils/path";
 
 import { LIBS_FUNCTIONS_NAME } from "./const";
+import { InitFunctionEnum } from "./enums";
+import { getStringParam } from "./main-utils";
 import {
   type SaveComponent,
   type SaveEntity,
@@ -162,7 +163,7 @@ export class MainGenerator {
     this.writeLine(`const ${entity.id} = registry.spawnEntity();`);
     entity.components.forEach(({ name, params: rawParams }, componentIndex) => {
       const params = !this.editor
-        ? rawParams
+        ? rawParams.map(getStringParam)
         : rawParams.map(
             (_param, index) =>
               `options.editor.save.entities[${entityIndex}].components[${componentIndex}].params[${index}]`,

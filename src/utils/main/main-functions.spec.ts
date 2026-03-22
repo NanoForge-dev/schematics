@@ -13,7 +13,7 @@ const emptySave: Save = {
 describe("generateMain", () => {
   it("should generate a client main with TypeScript types", () => {
     const result = generateMain(
-      { part: "client", language: "ts", initFunctions: false },
+      { part: "client", language: "ts", initFunctions: false, editor: false },
       emptySave,
     );
     expect(result).toContain("NanoforgeFactory.createClient()");
@@ -23,7 +23,7 @@ describe("generateMain", () => {
 
   it("should generate a server main without types", () => {
     const result = generateMain(
-      { part: "server", language: "js", initFunctions: false },
+      { part: "server", language: "js", initFunctions: false, editor: false },
       emptySave,
     );
     expect(result).toContain("NanoforgeFactory.createServer()");
@@ -32,7 +32,10 @@ describe("generateMain", () => {
   });
 
   it("should include init function imports and calls when enabled", () => {
-    const result = generateMain({ part: "client", language: "ts", initFunctions: true }, emptySave);
+    const result = generateMain(
+      { part: "client", language: "ts", initFunctions: true, editor: false },
+      emptySave,
+    );
     expect(result).toContain('import { beforeInit } from "./init/before-init";');
     expect(result).toContain("await beforeInit(app);");
     expect(result).toContain("await afterInit(app);");
@@ -44,7 +47,7 @@ describe("generateMain", () => {
 
   it("should not include init functions when disabled", () => {
     const result = generateMain(
-      { part: "client", language: "ts", initFunctions: false },
+      { part: "client", language: "ts", initFunctions: false, editor: false },
       emptySave,
     );
     expect(result).not.toContain("beforeInit");
@@ -63,7 +66,10 @@ describe("generateMain", () => {
         },
       ],
     };
-    const result = generateMain({ part: "client", language: "ts", initFunctions: false }, save);
+    const result = generateMain(
+      { part: "client", language: "ts", initFunctions: false, editor: false },
+      save,
+    );
     expect(result).toContain('import { Graphics } from "@nanoforge/graphics";');
     expect(result).toContain("const gfx = new Graphics();");
     expect(result).toContain("app.useGraphics(gfx);");
@@ -84,11 +90,14 @@ describe("generateMain", () => {
       entities: [
         {
           id: "player",
-          components: [{ name: "Position", params: ["0", "0"] }],
+          components: [{ name: "Position", params: [0, 0] }],
         },
       ],
     };
-    const result = generateMain({ part: "client", language: "ts", initFunctions: false }, save);
+    const result = generateMain(
+      { part: "client", language: "ts", initFunctions: false, editor: false },
+      save,
+    );
     expect(result).toContain("const registry = ecs.registry;");
     expect(result).toContain("const player = registry.spawnEntity();");
     expect(result).toContain("registry.addComponent(player, new Position(0, 0));");

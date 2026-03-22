@@ -136,8 +136,8 @@ describe("MainGenerator", () => {
         {
           id: "player",
           components: [
-            { name: "Position", params: ["0", "0"] },
-            { name: "Velocity", params: ["1"] },
+            { name: "Position", params: [0, 0] },
+            { name: "Velocity", params: [1] },
           ],
         },
       ];
