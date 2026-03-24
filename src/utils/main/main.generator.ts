@@ -166,12 +166,16 @@ export class MainGenerator {
   ): void {
     this.writeLine(`const ${entity.id} = registry.spawnEntity();`);
     Object.entries(entity.components).forEach(([componentName, rawParams]) => {
-      const originalsParams =
-        components.find(({ name }) => name === componentName)?.paramsNames || [];
+      const originalsParams = components.find(({ name }) => name === componentName)?.paramsNames;
+      if (!originalsParams)
+        throw new Error("Missing component in entity or inexistent saved component");
       const params: string[] = !this.editor
-        ? Object.values(rawParams).map((_param, paramIndex) =>
-            getStringParam(rawParams[originalsParams[paramIndex] || ""]),
-          )
+        ? Object.values(rawParams).map((_param, paramIndex) => {
+            const originalParamNameAtIndex = originalsParams[paramIndex];
+            if (!originalParamNameAtIndex)
+              throw new Error("Missing parameter in component or inexistent parameter");
+            return getStringParam(rawParams[originalParamNameAtIndex]);
+          })
         : Object.entries(rawParams).map((_params, paramIndex) => {
             return `options.editor.save.entities[${entityIndex}].components["${componentName}"]["${originalsParams[paramIndex]}"]`;
           });
