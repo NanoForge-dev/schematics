@@ -25,7 +25,17 @@ const clientSave: Save = {
   ],
   components: [{ name: "ExampleComponent", path: "./components/example.component" }],
   systems: [{ name: "exampleSystem", path: "./systems/example.system" }],
-  entities: [{ id: "player", components: [{ name: "ExampleComponent", params: ['"test"', "5"] }] }],
+  entities: [
+    {
+      id: "player",
+      components: [
+        {
+          name: "ExampleComponent",
+          paramsValues: ["test", 5],
+        },
+      ],
+    },
+  ],
 };
 
 const serverSave: Save = {
@@ -200,9 +210,9 @@ describe("part-main schematic", () => {
       expect(content).toContain("export async function main(options: IEditorRunOptions)");
     });
 
-    it("should use entity params from editor save", () => {
+    it("should use entity paramsValues from editor save", () => {
       const content = tree.readContent("/my-app/.nanoforge/editor/client/main.ts");
-      expect(content).toContain("options.editor.save.entities[0].components[0].params[0]");
+      expect(content).toContain("options.editor.save.entities[0].components[0].paramsValues[0]");
     });
 
     it("should import components and systems with relative path to root", () => {

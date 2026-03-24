@@ -346,7 +346,7 @@ The save file is a JSON document with the following structure:
         id: string;
         components: {
           name: string;
-          params: string[];
+          paramsValues: any[];
         }[];
       }[];
     }

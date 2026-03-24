@@ -46,27 +46,33 @@ export default ExampleComponent.name;
 export const EDITOR_COMPONENT_MANIFEST = {
   name: "Example",
   description: "Example component description",
-  params: {
-    paramA: {
-      type: "string",
-      name: "Param A",
-      description: "Param A description",
-      example: "Example value",
-    },
-    paramB: {
-      type: "number",
-      name: "Param B",
-      description: "Param B description",
-      example: 3,
-    },
-    paramC: {
-      type: "boolean",
-      name: "Param C",
-      description: "Param C description",
-      example: true,
-      default: false,
-      // Not required because it has a default value
-      optional: true,
-    },
-  },
+  params: [
+    [
+      {
+        type: "string",
+        name: "paramA",
+        description: "Param A description",
+        example: "Example value",
+      },
+    ],
+    [
+      {
+        type: "number",
+        name: "paramB",
+        description: "Param B description",
+        example: 3,
+      },
+    ],
+    [
+      {
+        type: "boolean",
+        name: "paramC",
+        description: "Param C description",
+        example: true,
+        default: false,
+        // Not required because it has a default value
+        optional: true,
+      },
+    ],
+  ],
 };
