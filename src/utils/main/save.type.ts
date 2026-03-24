@@ -28,7 +28,7 @@ export interface SaveEntity {
   id: string;
   components: {
     name: string;
-    params: any[];
+    paramsValues: any[];
   }[];
 }
 
