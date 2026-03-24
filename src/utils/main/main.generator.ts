@@ -105,8 +105,8 @@ export class MainGenerator {
     return this;
   }
 
-  generateEntities(entities: SaveEntity[]): MainGenerator {
-    entities.forEach((entity, index) => this.generateEntity(entity, index));
+  generateEntities(components: SaveComponent[], entities: SaveEntity[]): MainGenerator {
+    entities.forEach((entity, index) => this.generateEntity(components, entity, index));
     return this;
   }
 
@@ -159,16 +159,25 @@ export class MainGenerator {
     return this;
   }
 
-  private generateEntity(entity: SaveEntity, entityIndex: number): void {
+  private generateEntity(
+    components: SaveComponent[],
+    entity: SaveEntity,
+    entityIndex: number,
+  ): void {
     this.writeLine(`const ${entity.id} = registry.spawnEntity();`);
-    entity.components.forEach(({ name, paramsValues: rawParams }, componentIndex) => {
+    Object.entries(entity.components).forEach(([componentName, rawParams]) => {
+      const originalsParams =
+        components.find(({ name }) => name === componentName)?.paramsNames || [];
       const params: string[] = !this.editor
-        ? rawParams.map(getStringParam)
-        : rawParams.map(
-            (_param, index) =>
-              `options.editor.save.entities[${entityIndex}].components[${componentIndex}].paramsValues[${index}]`,
-          );
-      this.writeLine(`registry.addComponent(${entity.id}, new ${name}(${params.join(", ")}));`);
+        ? Object.values(rawParams).map((_param, paramIndex) =>
+            getStringParam(rawParams[originalsParams[paramIndex] || ""]),
+          )
+        : Object.entries(rawParams).map((_params, paramIndex) => {
+            return `options.editor.save.entities[${entityIndex}].components["${componentName}"]["${originalsParams[paramIndex]}"]`;
+          });
+      this.writeLine(
+        `registry.addComponent(${entity.id}, new ${componentName}(${params.join(", ")}));`,
+      );
     });
     this.endSection();
   }
