@@ -23,17 +23,20 @@ const clientSave: Save = {
       path: "@nanoforge-dev/graphics-2d",
     },
   ],
-  components: [{ name: "ExampleComponent", path: "./components/example.component" }],
+  components: [
+    {
+      name: "ExampleComponent",
+      path: "./components/example.component",
+      paramsNames: ["exampleValueName", "exampleNum"],
+    },
+  ],
   systems: [{ name: "exampleSystem", path: "./systems/example.system" }],
   entities: [
     {
       id: "player",
-      components: [
-        {
-          name: "ExampleComponent",
-          paramsValues: ["test", 5],
-        },
-      ],
+      components: {
+        ExampleComponent: { exampleValueName: "test", exampleNum: 5 },
+      },
     },
   ],
 };
@@ -212,7 +215,9 @@ describe("part-main schematic", () => {
 
     it("should use entity paramsValues from editor save", () => {
       const content = tree.readContent("/my-app/.nanoforge/editor/client/main.ts");
-      expect(content).toContain("options.editor.save.entities[0].components[0].paramsValues[0]");
+      expect(content).toContain(
+        'options.editor.save.entities[0].components["ExampleComponent"]["exampleValueName"]',
+      );
     });
 
     it("should import components and systems with relative path to root", () => {

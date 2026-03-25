@@ -132,19 +132,36 @@ describe("MainGenerator", () => {
 
   describe("generateEntities", () => {
     it("should generate entity spawn and component additions", () => {
+      const components = [
+        {
+          name: "Position",
+          path: "non",
+          paramsNames: ["x", "y"],
+        },
+        {
+          name: "Velocity",
+          path: "non",
+          paramsNames: ["fast"],
+        },
+      ];
       const entities = [
         {
           id: "player",
-          components: [
-            { name: "Position", paramsValues: [0, 0] },
-            { name: "Velocity", paramsValues: [1] },
-          ],
+          components: {
+            Position: {
+              x: 1,
+              y: 2,
+            },
+            Velocity: {
+              fast: 3,
+            },
+          },
         },
       ];
-      const result = new MainGenerator().generateEntities(entities).toString();
+      const result = new MainGenerator().generateEntities(components, entities).toString();
       expect(result).toContain("const player = registry.spawnEntity();");
-      expect(result).toContain("registry.addComponent(player, new Position(0, 0));");
-      expect(result).toContain("registry.addComponent(player, new Velocity(1));");
+      expect(result).toContain("registry.addComponent(player, new Position(1, 2));");
+      expect(result).toContain("registry.addComponent(player, new Velocity(3));");
     });
   });
 
