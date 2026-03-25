@@ -230,10 +230,10 @@ describe("part-main schematic", () => {
       );
     });
 
-    it("should create a entity_id reserved component", () => {
+    it("should create a entityId reserved component", () => {
       const content = tree.readContent("/my-app/.nanoforge/editor/client/main.ts");
       expect(content).toContain(
-        'registry.addComponent(player, { name: "__RESERVED_ENTITY_ID", entity_id: "player" });',
+        'registry.addComponent(player, { name: "__RESERVED_entityId", entityId: "player" });',
       );
     });
   });
