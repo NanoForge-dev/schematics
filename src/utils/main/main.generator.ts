@@ -170,14 +170,11 @@ export class MainGenerator {
       if (!originalsParams)
         throw new Error("Missing component in entity or inexistent saved component");
       const params: string[] = !this.editor
-        ? Object.values(rawParams).map((_param, paramIndex) => {
-            const originalParamNameAtIndex = originalsParams[paramIndex];
-            if (!originalParamNameAtIndex)
-              throw new Error("Missing parameter in component or inexistent parameter");
-            return getStringParam(rawParams[originalParamNameAtIndex]);
+        ? Object.values(originalsParams).map((ogParam) => {
+            return getStringParam(rawParams[ogParam]);
           })
-        : Object.entries(rawParams).map((_params, paramIndex) => {
-            return `options.editor.save.entities[${entityIndex}].components["${componentName}"]["${originalsParams[paramIndex]}"]`;
+        : Object.values(originalsParams).map((ogParam) => {
+            return `options.editor.save.entities[${entityIndex}].components["${componentName}"]["${ogParam}"]`;
           });
       this.writeLine(
         `registry.addComponent(${entity.id}, new ${componentName}(${params.join(", ")}));`,
