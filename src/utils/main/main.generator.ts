@@ -180,6 +180,11 @@ export class MainGenerator {
         `registry.addComponent(${entity.id}, new ${componentName}(${params.join(", ")}));`,
       );
     });
+    if (this.editor) {
+      this.writeLine(
+        `registry.addComponent(${entity.id}, { name: "__RESERVED_ENTITY_ID", entity_id: "${entity.id}" });`,
+      );
+    }
     this.endSection();
   }
 
