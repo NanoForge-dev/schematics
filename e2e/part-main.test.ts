@@ -229,5 +229,12 @@ describe("part-main schematic", () => {
         'import { exampleSystem } from "../../../client/systems/example.system"',
       );
     });
+
+    it("should create a entityId reserved component", () => {
+      const content = tree.readContent("/my-app/.nanoforge/editor/client/main.ts");
+      expect(content).toContain(
+        'registry.addComponent(player, { name: "__RESERVED_entityId", entityId: "player" });',
+      );
+    });
   });
 });
