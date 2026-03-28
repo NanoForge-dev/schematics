@@ -1,4 +1,4 @@
-<% if (packageManager === 'bun') { %>FROM oven/bun:1.3<% } else { %>FROM node:25-alpine<% } %>
+<% if (packageManager === 'bun') { %>FROM oven/bun:1.3<% } else { %>FROM node:25-slim<% } %>
 <% if (packageManager === 'pnpm') { %>
 ENV PNPM_HOME="/pnpm"
 ENV PATH="$PNPM_HOME:$PATH"
