@@ -63,4 +63,6 @@ export default [
   createLibTsupConfig("part-base"),
   createLibTsupConfig("part-main"),
   createLibTsupConfig("docker"),
+  createLibTsupConfig("component"),
+  createLibTsupConfig("system"),
 ];

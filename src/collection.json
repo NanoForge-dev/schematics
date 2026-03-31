@@ -25,6 +25,16 @@
       "factory": "./libs/docker/docker.factory#main",
       "description": "Create a Dockerfile for the application.",
       "schema": "./libs/docker/schema.json"
+    },
+    "component": {
+      "factory": "./libs/component/component.factory#main",
+      "description": "Create a NanoForge component.",
+      "schema": "./libs/component/schema.json"
+    },
+    "system": {
+      "factory": "./libs/system/system.factory#main",
+      "description": "Create a NanoForge system.",
+      "schema": "./libs/system/schema.json"
     }
   }
 }
