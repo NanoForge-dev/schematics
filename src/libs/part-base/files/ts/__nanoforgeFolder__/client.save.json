@@ -53,7 +53,8 @@
   "components": [
     {
       "name": "ExampleComponent",
-      "path": "./components/example.component"
+      "path": "./components/example.component",
+      "paramsNames": ["paramA", "paramB", "paramC"]
     }
   ],
   "systems": [
@@ -65,12 +66,12 @@
   "entities": [
     {
       "id": "exampleEntity",
-      "components": [
-        {
-          "name": "ExampleComponent",
-          "paramsValues": ["example", 10]
+      "components": {
+        "ExampleComponent": {
+          "paramA": "example",
+          "paramB": 10
         }
-      ]
+      }
     }
   ]
 }
