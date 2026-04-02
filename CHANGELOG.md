@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@nanoforge-dev/schematics@2.1.0](https://github.com/NanoForge-dev/schematics/compare/@nanoforge-dev/schematics@2.0.0...@nanoforge-dev/schematics@2.1.0) - (2026-04-02)
+
+## Bug Fixes
+
+- **docker:** Change base image as alpine doesnt have the right libs (#102) ([3b8c2b2](https://github.com/NanoForge-dev/schematics/commit/3b8c2b2476210b3df6a08415bb5f18b7cbdaf970)) by @MartinFillon
+- Remove ts types in js example system in part base (#93) ([89555b4](https://github.com/NanoForge-dev/schematics/commit/89555b46ffa8f3a4e2f157ecd9fabb2202de1cd7)) by @Exeloo
+
+## Features
+
+- Add component and system schematics (#103) ([38c90df](https://github.com/NanoForge-dev/schematics/commit/38c90df9bbe971da83aaa0338f39f875695083cf)) by @Exeloo
+- **editor:** Add component holding entity id (#100) ([433c648](https://github.com/NanoForge-dev/schematics/commit/433c64851faafaf4198ac56801d09b47cce150c4)) by @Tchips46
+- **save:** Allow partial saves component values as record string any (#98) ([9280349](https://github.com/NanoForge-dev/schematics/commit/9280349d9028d99028ab529e3c477cfd11d14606)) by @Tchips46
+- Set save params types to any (#96) ([7a29579](https://github.com/NanoForge-dev/schematics/commit/7a29579e03fc1c4ca2ebc7794b4b3dd60167f741)) by @Exeloo
+
+### New Contributors
+
+- @Tchips46 made their first contribution in #100
+
 # [@nanoforge-dev/schematics@2.0.0](https://github.com/NanoForge-dev/schematics/compare/@nanoforge-dev/schematics@1.2.2...@nanoforge-dev/schematics@2.0.0) - (2026-03-17)
 
 ## Features
