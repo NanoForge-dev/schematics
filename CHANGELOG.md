@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@nanoforge-dev/schematics@2.1.1](https://github.com/NanoForge-dev/schematics/compare/@nanoforge-dev/schematics@2.1.0...@nanoforge-dev/schematics@2.1.1) - (2026-04-02)
+
+## Bug Fixes
+
+- Change save format in part base schematic (#105) ([6eaffe8](https://github.com/NanoForge-dev/schematics/commit/6eaffe8d94ce99727a8c27e1f7d5e3fa39a787ca)) by @Exeloo
+
 # [@nanoforge-dev/schematics@2.1.0](https://github.com/NanoForge-dev/schematics/compare/@nanoforge-dev/schematics@2.0.0...@nanoforge-dev/schematics@2.1.0) - (2026-04-02)
 
 ## Bug Fixes
