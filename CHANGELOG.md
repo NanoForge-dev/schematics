@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@nanoforge-dev/schematics@2.1.2](https://github.com/NanoForge-dev/schematics/compare/@nanoforge-dev/schematics@2.1.1...@nanoforge-dev/schematics@2.1.2) - (2026-04-17)
+
+## Bug Fixes
+
+- Remove name formatting on app (#110) ([9478843](https://github.com/NanoForge-dev/schematics/commit/9478843b45a97714070babc6a7d41b8a9a6f2f65)) by @Exeloo
+
+## Features
+
+- Add dom to application schema tsconfig (#111) ([368fa7c](https://github.com/NanoForge-dev/schematics/commit/368fa7cdd94027fa9b8cc23516654bd6bb3a0beb)) by @Exeloo
+
 # [@nanoforge-dev/schematics@2.1.1](https://github.com/NanoForge-dev/schematics/compare/@nanoforge-dev/schematics@2.1.0...@nanoforge-dev/schematics@2.1.1) - (2026-04-02)
 
 ## Bug Fixes
