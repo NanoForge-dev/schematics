@@ -13,9 +13,6 @@ import {
 } from "@angular-devkit/schematics";
 import { firstValueFrom } from "rxjs";
 
-import { toKebabCase } from "@utils/formatting";
-import { resolvePackageName } from "@utils/name";
-
 import {
   DEFAULT_APP_NAME,
   DEFAULT_AUTHOR,
@@ -29,10 +26,8 @@ import { type ApplicationOptions } from "./application.options";
 import { type ApplicationSchema } from "./application.schema";
 
 const transform = (schema: ApplicationSchema): ApplicationOptions => {
-  const name = resolvePackageName(toKebabCase(schema.name?.toString() ?? DEFAULT_APP_NAME));
-
   return {
-    name,
+    name: schema.name ?? DEFAULT_APP_NAME,
     version: schema.version ?? DEFAULT_VERSION,
     author: schema.author ?? DEFAULT_AUTHOR,
     description: schema.description ?? DEFAULT_DESCRIPTION,
