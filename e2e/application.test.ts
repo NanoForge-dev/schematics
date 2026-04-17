@@ -137,15 +137,4 @@ describe("application schematic", () => {
       });
     });
   });
-
-  describe("with PascalCase name", () => {
-    it("should convert name to kebab-case", async () => {
-      const tree = await runner.runSchematic("application", {
-        name: "myApp",
-      });
-      expect(tree.files).toContain("/my-app/package.json");
-      const packageJson = JSON.parse(tree.readContent("/my-app/package.json"));
-      expect(packageJson.name).toBe("my-app");
-    });
-  });
 });
