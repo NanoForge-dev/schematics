@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [@nanoforge-dev/schematics@2.1.3](https://github.com/NanoForge-dev/schematics/compare/@nanoforge-dev/schematics@2.1.2...@nanoforge-dev/schematics@2.1.3) - (2026-04-19)
+
+## Bug Fixes
+
+- **template:** New format (#113) ([1e89de7](https://github.com/NanoForge-dev/schematics/commit/1e89de7a536f75783c260cf1a0f0b05f99ffcf97)) by @Tchips46
+
 # [@nanoforge-dev/schematics@2.1.2](https://github.com/NanoForge-dev/schematics/compare/@nanoforge-dev/schematics@2.1.1...@nanoforge-dev/schematics@2.1.2) - (2026-04-17)
 
 ## Bug Fixes
