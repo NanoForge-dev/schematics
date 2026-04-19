@@ -53,14 +53,14 @@
   "components": [
     {
       "name": "ExampleComponent",
-      "path": "./components/example.component",
+      "path": "./components/example.component.js",
       "paramsNames": ["paramA", "paramB", "paramC"]
     }
   ],
   "systems": [
     {
       "name": "exampleSystem",
-      "path": "./systems/example.system"
+      "path": "./systems/example.system.js"
     }
   ],
   "entities": [
