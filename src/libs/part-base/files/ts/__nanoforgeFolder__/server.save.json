@@ -25,14 +25,14 @@
   "components": [
     {
       "name": "ExampleComponent",
-      "path": "./components/example.component",
+      "path": "./components/example.component.ts",
       "paramsNames": ["paramA", "paramB", "paramC"]
     }
   ],
   "systems": [
     {
       "name": "exampleSystem",
-      "path": "./systems/example.system"
+      "path": "./systems/example.system.ts"
     }
   ],
   "entities": [
