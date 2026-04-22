@@ -46,7 +46,7 @@
   },
   "funding": "https://github.com/NanoForge-dev/schematics?sponsor",
   "scripts": {
-    "build": "tsc --noEmit && tsup",
+    "build": "tsc --noEmit && tsdown",
     "postbuild": "pnpm run copy:collection && pnpm run copy:lib",
     "copy:collection": "cpx src/collection.json dist && cpx 'src/libs/**/schema.json' dist/libs",
     "copy:lib": "cpx 'src/libs/**/files/**/{.,}*' dist/libs",
@@ -84,7 +84,7 @@
     "husky": "catalog:ci",
     "lint-staged": "catalog:ci",
     "prettier": "catalog:lint",
-    "tsup": "catalog:build",
+    "tsdown": "catalog:build",
     "typescript": "catalog:build",
     "vitest": "catalog:tests"
   },

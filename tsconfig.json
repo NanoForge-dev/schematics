@@ -36,14 +36,15 @@
 
     // Interop Constraints
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": false,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
 
     // Language and Environment
-    "experimentalDecorators": true,
+    "rootDir": ".",
     "lib": ["ESNext", "esnext.disposable"],
+    "types": ["node"],
     "target": "ESNext",
+    "experimentalDecorators": true,
     "useDefineForClassFields": true,
     "paths": {
       "~/*": ["./src/*"],
