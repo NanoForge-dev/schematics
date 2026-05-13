@@ -1,0 +1,120 @@
+---
+title: API Reference
+description: Internal utility modules and shared helpers used by the schematics.
+---
+
+# API Reference
+
+This section documents the internal utility modules and classes under `src/utils/`.
+
+## MainGenerator
+
+**Module:** `src/utils/main/main.generator.ts`
+
+A builder-pattern class that generates the contents of a NanoForge `main.ts` entry point file. It is used by the
+`part-main` schematic.
+
+### Methods
+
+- `generateBaseImports(hasTypes: boolean)` adds the base NanoForge imports and conditionally emits type imports.
+- `generateLibsImports(libs)` generates import statements for all libraries listed in the save file.
+- `generateComponentsImports(components)` generates import statements for all components.
+- `generateSystemsImports(systems)` generates import statements for all systems.
+- `generateMainFunction(hasTypes, cb)` wraps generated output in an `export async function main(...)` block.
+- `generateApp(isServer)` emits `NanoforgeFactory.createClient()` or `NanoforgeFactory.createServer()`.
+- `generateAppInit()` emits `await app.init(options);`.
+- `generateAppRun()` emits `await app.run();`.
+- `generateLibsInstances(libs)` emits `const <id> = new <Name>();` for each library.
+- `generateLibsInit(libs)` emits the matching `app.use*()` call for each library type.
+- `generateRegistry(libs)` emits `const registry = <ecsLib>.registry;`.
+- `generateEntities(entities)` emits entity creation and component attachment calls.
+- `generateSystems(systems)` emits `registry.addSystem(<name>);` for each system.
+- `generateInitFunctionIfNeeded(needed, func)` conditionally emits lifecycle hook calls.
+- `generateInitFunctionsImportsIfNeeded(needed)` conditionally emits lifecycle hook imports.
+- `toString()` returns the accumulated generated code.
+
+## ConfigFinder
+
+**Module:** `src/utils/config/config.finder.ts`
+
+Searches the virtual file tree for an existing `nanoforge.config.json` and returns the parsed config if found.
+
+- `find(tree, path)` recursively searches upward from the given path.
+
+## ConfigDeclarator
+
+**Module:** `src/utils/config/config.declarator.ts`
+
+Updates a configuration tree by merging server options.
+
+- `declare(tree, path, server)` reads the config, deep-merges server configuration when requested, and writes the result back.
+
+## Formatting Utilities
+
+**Module:** `src/utils/formatting.ts`
+
+- `toKebabCase(str)` converts a string to kebab-case.
+- `toCamelCase(str)` converts a string to camelCase.
+- `toPascalCase(str)` converts a string to PascalCase.
+
+## Name Utilities
+
+**Module:** `src/utils/name.ts`
+
+- `resolvePackageName(path)` extracts the package name from a path string and handles scoped packages.
+
+## Object Utilities
+
+**Module:** `src/utils/object.ts`
+
+- `deepMerge(...objects)` recursively merges multiple objects together.
+- `isObject(item)` returns `true` when the item is a plain object.
+
+## Types and Enums
+
+**Module:** `src/utils/main/enums.ts`
+
+The init function enum defines the six lifecycle hook names:
+
+```ts
+enum InitFunctionEnum {
+  BEFORE_INIT = "beforeInit",
+  AFTER_INIT = "afterInit",
+  BEFORE_REGISTRY_INIT = "beforeRegistryInit",
+  AFTER_REGISTRY_INIT = "afterRegistryInit",
+  BEFORE_RUN = "beforeRun",
+  AFTER_RUN = "afterRun",
+}
+```
+
+**Module:** `src/utils/main/save.type.ts`
+
+The save types describe the metadata consumed by `part-main`:
+
+```ts
+enum SaveLibraryTypeEnum {
+  COMPONENT_SYSTEM = "component-system",
+  GRAPHICS = "graphics",
+  ASSET_MANAGER = "asset-manager",
+  NETWORK = "network",
+  INPUT = "input",
+  SOUND = "sound",
+}
+```
+
+## Constants
+
+**Module:** `src/utils/main/const.ts`
+
+Maps library types to the corresponding `app.use*()` method name.
+
+```ts
+const LIBS_FUNCTIONS_NAME = {
+  "component-system": "useComponentSystem",
+  graphics: "useGraphics",
+  "asset-manager": "useAssetManager",
+  network: "useNetwork",
+  input: "useInput",
+  sound: "useSound",
+};
+```

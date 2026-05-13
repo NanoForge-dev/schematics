@@ -1,0 +1,244 @@
+---
+title: Schematics Reference
+description: Detailed reference for every schematic shipped by the package.
+---
+
+# Schematics Reference
+
+This page documents each schematic provided by `@nanoforge-dev/schematics`.
+
+## application
+
+Scaffolds a complete NanoForge project with tooling configuration and optional client or server structure.
+
+**Factory:** `src/libs/application/application.factory.ts`
+
+| Option           | Type                               | Required | Default           | Description                  |
+| ---------------- | ---------------------------------- | -------- | ----------------- | ---------------------------- |
+| `name`           | string                             | Yes      | `nanoforge-app`   | Project name                 |
+| `version`        | string                             | No       | `0.0.0`           | Application version          |
+| `author`         | string                             | No       | `""`              | Application author           |
+| `description`    | string                             | No       | `""`              | Application description      |
+| `directory`      | string                             | No       | Derived from name | Output directory             |
+| `language`       | `ts` \| `js`                       | No       | `ts`              | Language for generated files |
+| `strict`         | boolean                            | No       | `true`            | Enable strict mode           |
+| `lint`           | boolean                            | No       | `true`            | Generate lint files          |
+| `packageManager` | `npm` \| `yarn` \| `pnpm` \| `bun` | No       | `npm`             | Package manager to configure |
+| `server`         | boolean                            | No       | `false`           | Include server configuration |
+| `editor`         | boolean                            | No       | `false`           | Add editor dependencies      |
+
+Generated output typically includes `package.json`, `eslint.config.js`, `prettier.config.js`, `.prettierignore`, and `README.md`.
+TypeScript projects also receive `tsconfig.json`.
+
+## configuration
+
+Generates or updates `nanoforge.config.json`. When an existing config is found in the directory tree, the new values
+are deep-merged into it.
+
+**Factory:** `src/libs/configuration/configuration.factory.ts`
+
+| Option          | Type         | Required | Default         | Description                                |
+| --------------- | ------------ | -------- | --------------- | ------------------------------------------ |
+| `name`          | string       | No       | `nanoforge-app` | Project name                               |
+| `directory`     | string       | No       | `.`             | Destination directory                      |
+| `server`        | boolean      | No       | `false`         | Enable server configuration                |
+| `language`      | `ts` \| `js` | No       | `ts`            | Application language                       |
+| `initFunctions` | boolean      | No       | `false`         | Add init functions to the main application |
+
+Example output:
+
+```json
+{
+  "client": {
+    "build": {
+      "entryFile": "client/main.ts",
+      "outDir": ".nanoforge/client"
+    },
+    "runtime": {
+      "dir": ".nanoforge/client"
+    }
+  },
+  "server": {
+    "enable": true,
+    "build": {
+      "entryFile": "server/main.ts",
+      "outDir": ".nanoforge/server"
+    },
+    "runtime": {
+      "dir": ".nanoforge/server"
+    }
+  }
+}
+```
+
+## part-base
+
+Generates the base directory structure for a client or server part. This includes example components, example systems,
+optional lifecycle init functions, and a `.nanoforge/<part>.save.json` metadata file used by `part-main`.
+
+**Factory:** `src/libs/part-base/part-base.factory.ts`
+
+| Option          | Type                 | Required | Default | Description                            |
+| --------------- | -------------------- | -------- | ------- | -------------------------------------- |
+| `directory`     | string               | No       | `.`     | Destination directory                  |
+| `part`          | `client` \| `server` | Yes      | -       | Which part to generate                 |
+| `language`      | `ts` \| `js`         | No       | `ts`    | Language for generated files           |
+| `initFunctions` | boolean              | No       | `false` | Generate lifecycle init function files |
+| `server`        | boolean              | No       | `false` | Indicate whether the app has a server  |
+
+Generated output resembles:
+
+```text
+<directory>/
++-- <part>/
+|   +-- components/
+|   |   +-- example.component.ts
+|   +-- systems/
+|   |   +-- example.system.ts
+|   +-- init/                       (only if initFunctions=true)
+|       +-- before-init.ts
+|       +-- after-init.ts
+|       +-- before-registry-init.ts
+|       +-- after-registry-init.ts
+|       +-- before-run.ts
+|       +-- after-run.ts
++-- .nanoforge/
+    +-- <part>.save.json
+```
+
+When `initFunctions` is enabled, six lifecycle hooks are generated:
+
+| Function             | Parameters        | When Called                        |
+| -------------------- | ----------------- | ---------------------------------- |
+| `beforeInit`         | `app`             | Before application initialization  |
+| `afterInit`          | `app`             | After application initialization   |
+| `beforeRegistryInit` | `app`, `registry` | Before ECS registry initialization |
+| `afterRegistryInit`  | `app`, `registry` | After ECS registry initialization  |
+| `beforeRun`          | `app`             | Before application run loop starts |
+| `afterRun`           | `app`             | After application run loop ends    |
+
+## part-main
+
+Dynamically generates the `main.ts` or `main.js` entry point for a client or server part. The generated code is driven
+by the `.nanoforge/<part>.save.json` metadata file, which lists libraries, components, systems, and entities.
+
+**Factory:** `src/libs/part-main/part-main.factory.ts`
+
+| Option          | Type                 | Required | Default                            | Description                           |
+| --------------- | -------------------- | -------- | ---------------------------------- | ------------------------------------- |
+| `directory`     | string               | No       | `.`                                | Working directory                     |
+| `part`          | `client` \| `server` | Yes      | -                                  | Which part to generate                |
+| `language`      | `ts` \| `js`         | No       | `ts`                               | Language for the generated file       |
+| `initFunctions` | boolean              | No       | `false`                            | Include lifecycle init function calls |
+| `saveFile`      | string               | No       | `.nanoforge/<part>.save.json`      | Path to the metadata save file        |
+| `outFile`       | string               | No       | Derived from `part` and `language` | Output file path override             |
+| `editor`        | boolean              | No       | `false`                            | Build the main editor variant         |
+
+Save file format:
+
+```ts
+interface Save {
+  libraries: {
+    id: string;
+    type:
+      | "component-system"
+      | "graphics"
+      | "asset-manager"
+      | "network"
+      | "input"
+      | "sound"
+      | string;
+    name: string;
+    path: string;
+  }[];
+  components: {
+    name: string;
+    path: string;
+    paramsNames: string[];
+  }[];
+  systems: {
+    name: string;
+    path: string;
+  }[];
+  entities: {
+    id: string;
+    components: Record<string, Record<string, any>>;
+  }[];
+}
+```
+
+The generated code follows this pattern:
+
+```ts
+import { type IRunOptions } from "@nanoforge-dev/common";
+import { NanoforgeFactory } from "@nanoforge-dev/core";
+
+// library, component, and system imports
+
+export async function main(options: IRunOptions) {
+  const app = NanoforgeFactory.createClient();
+
+  const registry = ecsLibrary.registry;
+
+  await app.init(options);
+
+  const entity = registry.spawnEntity();
+  registry.addComponent(entity, new ExampleComponent("a", 1));
+  registry.addSystem(exampleSystem);
+
+  await app.run();
+}
+```
+
+Library type mapping:
+
+| Library Type       | Method Called                    |
+| ------------------ | -------------------------------- |
+| `component-system` | `app.useComponentSystem()`       |
+| `graphics`         | `app.useGraphics()`              |
+| `asset-manager`    | `app.useAssetManager()`          |
+| `network`          | `app.useNetwork()`               |
+| `input`            | `app.useInput()`                 |
+| `sound`            | `app.useSound()`                 |
+| Custom string      | `app.use(Symbol("<type>"), ...)` |
+
+## docker
+
+Creates a Dockerfile for the application.
+
+**Factory:** `src/libs/docker/docker.factory.ts`
+
+| Option           | Type                               | Required | Default | Description                         |
+| ---------------- | ---------------------------------- | -------- | ------- | ----------------------------------- |
+| `directory`      | string                             | No       | `.`     | Destination directory               |
+| `packageManager` | `npm` \| `yarn` \| `pnpm` \| `bun` | No       | `npm`   | Package manager to use in the image |
+
+## component
+
+Creates a NanoForge component for a client or server part.
+
+**Factory:** `src/libs/component/component.factory.ts`
+
+| Option      | Type                 | Required | Default   | Description                  |
+| ----------- | -------------------- | -------- | --------- | ---------------------------- |
+| `name`      | string               | No       | `example` | Component name               |
+| `directory` | string               | No       | `.`       | Destination directory        |
+| `part`      | `client` \| `server` | Yes      | -         | Which part to generate       |
+| `language`  | `ts` \| `js`         | No       | `ts`      | Language for generated files |
+
+The schematic normalizes the component name into a PascalCase class name and a kebab-case file name.
+
+## system
+
+Creates a NanoForge system for a client or server part.
+
+**Factory:** `src/libs/system/system.factory.ts`
+
+| Option      | Type                 | Required | Default   | Description                  |
+| ----------- | -------------------- | -------- | --------- | ---------------------------- |
+| `name`      | string               | No       | `example` | System name                  |
+| `directory` | string               | No       | `.`       | Destination directory        |
+| `part`      | `client` \| `server` | Yes      | -         | Which part to generate       |
+| `language`  | `ts` \| `js`         | No       | `ts`      | Language for generated files |
+
+The schematic normalizes the system name into a camelCase function name and a kebab-case file name.

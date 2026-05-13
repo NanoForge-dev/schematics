@@ -31,8 +31,10 @@ jobs:
 
       - name: synchronize docs
         run: |
-          mkdir -p docs/schematics
-          cp schematics/docs/. -r docs/schematics
+          mkdir -p docs/docs/schematics
+          mkdir -p docs/guides/schematics
+          rsync -a --delete schematics/docs/docs/ docs/docs/schematics/
+          rsync -a --delete schematics/docs/guides/ docs/guides/schematics/
           cd docs
           git add .
           git commit -m "chore(schematics): updating docs"
