@@ -1,0 +1,75 @@
+---
+title: Testing
+description: Run lint, type checking, and build verification for the schematics package.
+---
+
+# Testing
+
+This guide covers how to run quality checks on the NanoForge Schematics codebase.
+
+## Running Lint Checks
+
+The project uses ESLint for code quality and Prettier for formatting.
+
+```bash
+pnpm lint
+```
+
+This runs:
+
+1. `prettier --check .` to verify formatting
+2. `eslint --format=pretty src` to check TypeScript source files for lint errors
+
+## Auto-Fixing Issues
+
+```bash
+pnpm format
+```
+
+This runs:
+
+1. `prettier --write .` to reformat files
+2. `eslint --fix --format=pretty src` to auto-fix lint issues where possible
+
+## Type Checking
+
+TypeScript type checking is part of the build process.
+
+```bash
+# Type check only
+npx tsc --noEmit
+
+# Full build
+pnpm build
+```
+
+## Building
+
+Verify that the project builds without errors:
+
+```bash
+pnpm build
+```
+
+This runs type checking, bundles the code with tsdown, and copies template files and schemas to `dist/`.
+
+## Pre-Commit Hooks
+
+The project has pre-commit hooks configured via Husky and lint-staged. When you commit, the following checks run
+automatically on staged files:
+
+- Prettier formats all staged files
+- ESLint fixes lint issues in staged `src/**/*.ts` files
+
+## CI Pipeline
+
+The GitHub Actions CI pipeline runs on every pull request targeting `main`, every push to `main`, and manual dispatch.
+It runs `pnpm lint` and blocks merging if it fails.
+
+## Verifying a Full Check
+
+Before submitting a pull request, run the full check locally:
+
+```bash
+pnpm format && pnpm build
+```
