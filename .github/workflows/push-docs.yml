@@ -33,5 +33,5 @@ jobs:
           destination-guides: guides/schematics
           repository: nanoforge-dev/docs
           config: ${{ env.SOURCE_PATH }}/docs/config.json
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.ACTIONS_KEY }}
           commit-message: "Update schematics documentation"
