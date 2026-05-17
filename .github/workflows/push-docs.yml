@@ -24,7 +24,6 @@ jobs:
         uses: ./schematics/.github/actions/pnpm-install
         with:
           path: ${{ env.SOURCE_PATH }}
-
       - name: synchronize docs
         uses: ./schematics/node_modules/@nanoforge-dev/actions/src/synchronize-docs
         with:
