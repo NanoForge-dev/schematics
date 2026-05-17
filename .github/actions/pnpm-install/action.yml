@@ -17,6 +17,7 @@ runs:
       name: Install pnpm
       with:
         run_install: false
+        package_json_file: ${{ inputs.path }}/package.json
 
     - name: Expose pnpm config(s) through "$GITHUB_OUTPUT"
       id: pnpm-config
