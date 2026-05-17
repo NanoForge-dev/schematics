@@ -8,6 +8,9 @@ on:
       - "docs/**"
   workflow_dispatch:
 
+env:
+  SOURCE_PATH: schematics
+
 jobs:
   synchronize:
     runs-on: ubuntu-latest
@@ -15,21 +18,20 @@ jobs:
       - name: Checkout schematics
         uses: actions/checkout@v6
         with:
-          path: schematics
+          path: ${{ env.SOURCE_PATH }}
 
       - name: pnpm-install
         uses: ./schematics/.github/actions/pnpm-install
         with:
-          path: schematics
-
+          path: ${{ env.SOURCE_PATH }}
       - name: synchronize docs
         uses: ./schematics/node_modules/@nanoforge-dev/actions/src/synchronize-docs
         with:
-          source-docs: schematics/docs/docs
+          source-docs: ${{ env.SOURCE_PATH }}/docs/docs
           destination-docs: docs/schematics
-          source-guides: schematics/docs/guides
+          source-guides: ${{ env.SOURCE_PATH }}/docs/guides
           destination-guides: guides/schematics
           repository: nanoforge-dev/docs
-          config: schematics/docs/config.json
+          config: ${{ env.SOURCE_PATH }}/docs/config.json
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: "Update schematics documentation"
