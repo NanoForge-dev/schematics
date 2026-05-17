@@ -26,8 +26,8 @@ catalogs:
       specifier: ^6.1.0
       version: 6.1.0
     '@nanoforge-dev/actions':
-      specifier: ^1.3.0
-      version: 1.3.0
+      specifier: ^1.4.0
+      version: 1.4.0
     husky:
       specifier: ^9.1.7
       version: 9.1.7
@@ -103,7 +103,7 @@ importers:
         version: 6.1.0
       '@nanoforge-dev/actions':
         specifier: catalog:ci
-        version: 1.3.0
+        version: 1.4.0
       '@nanoforge-dev/utils-eslint-config':
         specifier: catalog:lint
         version: 1.0.2(@types/eslint@9.6.1)(eslint@10.2.1(jiti@2.6.1))(prettier@3.8.3)(typescript@6.0.3)
@@ -553,8 +553,8 @@ packages:
   '@jridgewell/trace-mapping@0.3.31':
     resolution: {integrity: sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==}
 
-  '@nanoforge-dev/actions@1.3.0':
-    resolution: {integrity: sha512-EmArilxSOkmpdBnNhuyIfsXxRNeRugA9LyEp5VRj7n+dhG95UEahgSJll/lautjtYQPX6Dh5ETWwqjjRDclreQ==}
+  '@nanoforge-dev/actions@1.4.0':
+    resolution: {integrity: sha512-7RB7482j/V6D0M8PI/D6vwxJrCFdPX+XgGnqS2jAJRdF/t9hFBBqbJP8BUXb0C9Dmr6DR8+V3HgENGriFlskHQ==}
     engines: {node: '25'}
 
   '@nanoforge-dev/utils-eslint-config@1.0.2':
@@ -2876,7 +2876,7 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.5.5
 
-  '@nanoforge-dev/actions@1.3.0':
+  '@nanoforge-dev/actions@1.4.0':
     dependencies:
       '@actions/core': 3.0.1
       '@actions/github': 9.1.1

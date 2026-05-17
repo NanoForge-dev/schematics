@@ -17,25 +17,19 @@ jobs:
         with:
           path: schematics
 
-      - name: Checkout docs
-        uses: actions/checkout@v6
+      - name: pnpm-install
+        uses: ./schematics/.github/actions/pnpm-install
         with:
-          path: docs
-          repository: nanoforge-dev/docs
-          token: ${{ secrets.ACTIONS_KEY }}
-
-      - name: setup git
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "username@users.noreply.github.com"
+          path: schematics
 
       - name: synchronize docs
-        run: |
-          mkdir -p docs/docs/schematics
-          mkdir -p docs/guides/schematics
-          rsync -a --delete schematics/docs/docs/ docs/docs/schematics/
-          rsync -a --delete schematics/docs/guides/ docs/guides/schematics/
-          cd docs
-          git add .
-          git commit -m "chore(schematics): updating docs"
-          git push origin main
+        uses: ./schematics/node_modules/@nanoforge-dev/actions/src/synchronize-docs
+        with:
+          source-docs: schematics/docs/docs
+          destination-docs: docs/schematics
+          source-guides: schematics/docs/guides
+          destination-guides: guides/schematics
+          repository: nanoforge-dev/docs
+          config: schematics/docs/config.json
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update schematics documentation"

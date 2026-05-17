@@ -1,0 +1,21 @@
+{
+  "documentation": {
+    "group": "Schematics",
+    "pages": [
+      "docs/schematics/index",
+      "docs/schematics/api",
+      "docs/schematics/architecture",
+      "docs/schematics/schematics"
+    ]
+  },
+  "guides": {
+    "group": "Schematics",
+    "pages": [
+      "guides/schematics/index",
+      "guides/schematics/contributing",
+      "guides/schematics/creating-schematics",
+      "guides/schematics/testing",
+      "guides/schematics/getting-started"
+    ]
+  }
+}
