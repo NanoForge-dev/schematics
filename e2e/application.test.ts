@@ -23,6 +23,7 @@ describe("application schematic", () => {
       expect(tree.files).toContain("/my-app/prettier.config.js");
       expect(tree.files).toContain("/my-app/README.md");
       expect(tree.files).toContain("/my-app/.gitignore");
+      expect(tree.files).not.toContain("/my-app/.env");
     });
 
     it("should set the project name in package.json", () => {
@@ -58,6 +59,7 @@ describe("application schematic", () => {
       expect(tree.files).toContain("/js-app/package.json");
       expect(tree.files).toContain("/js-app/jsconfig.json");
       expect(tree.files).not.toContain("/js-app/tsconfig.json");
+      expect(tree.files).not.toContain("/js-app/.env");
     });
   });
 
@@ -90,6 +92,10 @@ describe("application schematic", () => {
         name: "server-app",
         server: true,
       });
+    });
+
+    it("should include env file", () => {
+      expect(tree.files).toContain("/server-app/.env");
     });
 
     it("should include ecs-server dependency", () => {

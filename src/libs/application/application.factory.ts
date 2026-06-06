@@ -65,12 +65,17 @@ export const main = (schema: ApplicationSchema): Rule => {
       tree = await firstValueFrom(tree);
     }
 
+    const basePath = join("/" as Path, path);
+
     if (!options.lint) {
-      const basePath = join("/" as Path, path);
       tree.delete(join(basePath, "eslint.config.js"));
       tree.delete(join(basePath, "prettier.config.js"));
       tree.delete(join(basePath, ".prettierignore"));
       if (options.language === "js") tree.delete(join(basePath, "jsconfig.json"));
+    }
+
+    if (!options.server) {
+      tree.delete(join(basePath, ".env"));
     }
 
     return tree;
