@@ -30,32 +30,26 @@ export const EDITOR_COMPONENT_MANIFEST: EditorComponentManifest = {
   name: "<%= className %>",
   description: "<%= className %> component description",
   params: [
-    [
-      {
-        type: "string",
-        name: "paramA",
-        description: "Param A description",
-        example: "Example value",
-      },
-    ],
-    [
-      {
-        type: "number",
-        name: "paramB",
-        description: "Param B description",
-        example: 3,
-      },
-    ],
-    [
-      {
-        type: "boolean",
-        name: "paramC",
-        description: "Param C description",
-        example: true,
-        default: false,
-        // Not required because it has a default value
-        optional: true,
-      },
-    ],
+    {
+      type: "string",
+      name: "paramA",
+      description: "Param A description",
+      example: "Example value",
+    },
+    {
+      type: "number",
+      name: "paramB",
+      description: "Param B description",
+      example: 3,
+    },
+    {
+      type: "boolean",
+      name: "paramC",
+      description: "Param C description",
+      example: true,
+      default: false,
+      // Not required because it has a default value
+      optional: true,
+    },
   ],
 };
