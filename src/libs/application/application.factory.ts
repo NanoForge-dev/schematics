@@ -44,6 +44,7 @@ const transform = (schema: ApplicationSchema): ApplicationOptions => {
 const generate = (options: ApplicationOptions, path: string): Source => {
   return apply(url(join("./files" as Path, options.language)), [
     template({
+      dot: ".",
       ...strings,
       ...options,
     }),

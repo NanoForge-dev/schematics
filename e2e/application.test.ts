@@ -22,6 +22,7 @@ describe("application schematic", () => {
       expect(tree.files).toContain("/my-app/eslint.config.js");
       expect(tree.files).toContain("/my-app/prettier.config.js");
       expect(tree.files).toContain("/my-app/README.md");
+      expect(tree.files).toContain("/my-app/.gitignore");
     });
 
     it("should set the project name in package.json", () => {
