@@ -42,6 +42,9 @@ This repository provide multiples schematics, usable with Angular Devkit schemat
 - `configuration` : Template of `nanoforge.config.json` with premade fields
 - `part-base` : Base of Nanoforge client or server
 - `part-main` : Client or server `main.ts` from a config
+- `component` : ECS component class for a client or server part
+- `system` : ECS system function for a client or server part
+- `docker` : Dockerfile and `.dockerignore` tailored to your package manager
 
 ## Contributing
 
