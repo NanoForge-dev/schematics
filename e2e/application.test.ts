@@ -22,6 +22,8 @@ describe("application schematic", () => {
       expect(tree.files).toContain("/my-app/eslint.config.js");
       expect(tree.files).toContain("/my-app/prettier.config.js");
       expect(tree.files).toContain("/my-app/README.md");
+      expect(tree.files).toContain("/my-app/.gitignore");
+      expect(tree.files).not.toContain("/my-app/.env");
     });
 
     it("should set the project name in package.json", () => {
@@ -34,6 +36,12 @@ describe("application schematic", () => {
 
     it("should not include pnpm config by default", () => {
       expect(packageJson).not.toHaveProperty("pnpm");
+    });
+
+    it("should not include init functions docs by default", () => {
+      expect(tree.readContent("/my-app/README.md")).not.toContain(
+        "│   └── init/               # Lifecycle hooks (before-init, after-run, …)",
+      );
     });
   });
 
@@ -51,6 +59,7 @@ describe("application schematic", () => {
       expect(tree.files).toContain("/js-app/package.json");
       expect(tree.files).toContain("/js-app/jsconfig.json");
       expect(tree.files).not.toContain("/js-app/tsconfig.json");
+      expect(tree.files).not.toContain("/js-app/.env");
     });
   });
 
@@ -83,6 +92,10 @@ describe("application schematic", () => {
         name: "server-app",
         server: true,
       });
+    });
+
+    it("should include env file", () => {
+      expect(tree.files).toContain("/server-app/.env");
     });
 
     it("should include ecs-server dependency", () => {
@@ -135,6 +148,20 @@ describe("application schematic", () => {
       expect(packageJson).toHaveProperty("pnpm", {
         neverBuiltDependencies: [],
       });
+    });
+  });
+
+  describe("with init functions", () => {
+    it("should generate specifications of init functions", async () => {
+      const tree = await runner.runSchematic("application", {
+        name: "init-functions-app",
+        initFunctions: true,
+      });
+      expect(tree.files).toContain("/init-functions-app/README.md");
+      const content = tree.readContent("/init-functions-app/README.md");
+      expect(content).toContain(
+        "│   └── init/               # Lifecycle hooks (before-init, after-run, …)",
+      );
     });
   });
 });

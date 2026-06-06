@@ -37,12 +37,14 @@ const transform = (schema: ApplicationSchema): ApplicationOptions => {
     packageManager: schema.packageManager ?? DEFAULT_PACKAGE_MANAGER,
     server: schema.server ?? false,
     editor: schema.editor ?? false,
+    initFunctions: schema.initFunctions ?? false,
   };
 };
 
 const generate = (options: ApplicationOptions, path: string): Source => {
   return apply(url(join("./files" as Path, options.language)), [
     template({
+      dot: ".",
       ...strings,
       ...options,
     }),
@@ -63,12 +65,17 @@ export const main = (schema: ApplicationSchema): Rule => {
       tree = await firstValueFrom(tree);
     }
 
+    const basePath = join("/" as Path, path);
+
     if (!options.lint) {
-      const basePath = join("/" as Path, path);
       tree.delete(join(basePath, "eslint.config.js"));
       tree.delete(join(basePath, "prettier.config.js"));
       tree.delete(join(basePath, ".prettierignore"));
       if (options.language === "js") tree.delete(join(basePath, "jsconfig.json"));
+    }
+
+    if (!options.server) {
+      tree.delete(join(basePath, ".env"));
     }
 
     return tree;

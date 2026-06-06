@@ -26,11 +26,11 @@ const clientSave: Save = {
   components: [
     {
       name: "ExampleComponent",
-      path: "./components/example.component",
+      path: "./components/example.component.ts",
       paramsNames: ["exampleValueName", "exampleNum"],
     },
   ],
-  systems: [{ name: "exampleSystem", path: "./systems/example.system" }],
+  systems: [{ name: "exampleSystem", path: "./systems/example.system.js" }],
   entities: [
     {
       id: "player",

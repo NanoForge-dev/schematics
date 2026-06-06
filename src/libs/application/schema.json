@@ -59,6 +59,11 @@
       "type": "boolean",
       "description": "Add editor dependencies",
       "default": false
+    },
+    "initFunctions": {
+      "type": "boolean",
+      "description": "Add init functions to the application",
+      "default": false
     }
   },
   "required": ["name"]

@@ -29,7 +29,7 @@ describe("configuration schematic", () => {
     it("should include default client build config", () => {
       expect(config.name).toBe("my-name");
       expect(config.language).toBe("ts");
-      expect(config.initFunctions).toBe(false);
+      expect(config.initFunctions).not.toBeDefined();
     });
 
     it("should include default client build config", () => {

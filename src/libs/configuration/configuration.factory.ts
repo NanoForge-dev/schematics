@@ -55,7 +55,6 @@ const getConfig = (schema: ConfigurationSchema): DeepPartial<Config> => {
   const res: DeepPartial<Config> = {
     name: schema.name,
     language: schema.language,
-    initFunctions: schema.initFunctions,
     client: {
       enable: true,
     },
@@ -63,6 +62,10 @@ const getConfig = (schema: ConfigurationSchema): DeepPartial<Config> => {
       enable: schema.server ?? false,
     },
   };
+
+  if (schema.initFunctions) {
+    res["initFunctions"] = true;
+  }
 
   if (schema.language === "js") {
     if ("client" in res && res.client) {

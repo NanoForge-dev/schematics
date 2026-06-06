@@ -150,11 +150,12 @@ export class MainGenerator {
   private generateImports(els: { name: string; path: string }[], relative: boolean): MainGenerator {
     els
       .sort((a, b) => a.path.localeCompare(b.path))
-      .forEach(({ name, path }) =>
+      .forEach(({ name, path }) => {
+        path = path.replace(/\.(?:ts|js)$/, "");
         this.writeLine(
           `import { ${name} } from "${relative ? joinRelative(this.pathToRoot, path) : path}";`,
-        ),
-      );
+        );
+      });
     this.endSection();
     return this;
   }
