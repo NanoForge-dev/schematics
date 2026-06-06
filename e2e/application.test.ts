@@ -35,6 +35,12 @@ describe("application schematic", () => {
     it("should not include pnpm config by default", () => {
       expect(packageJson).not.toHaveProperty("pnpm");
     });
+
+    it("should not include init functions docs by default", () => {
+      expect(tree.readContent("/my-app/README.md")).not.toContain(
+        "│   └── init/               # Lifecycle hooks (before-init, after-run, …)",
+      );
+    });
   });
 
   describe("with JavaScript", () => {
@@ -135,6 +141,20 @@ describe("application schematic", () => {
       expect(packageJson).toHaveProperty("pnpm", {
         neverBuiltDependencies: [],
       });
+    });
+  });
+
+  describe("with init functions", () => {
+    it("should generate specifications of init functions", async () => {
+      const tree = await runner.runSchematic("application", {
+        name: "init-functions-app",
+        initFunctions: true,
+      });
+      expect(tree.files).toContain("/init-functions-app/README.md");
+      const content = tree.readContent("/init-functions-app/README.md");
+      expect(content).toContain(
+        "│   └── init/               # Lifecycle hooks (before-init, after-run, …)",
+      );
     });
   });
 });

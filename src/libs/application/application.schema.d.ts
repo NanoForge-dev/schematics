@@ -53,4 +53,9 @@ export interface ApplicationSchema {
    * Add editor dependencies
    */
   editor: boolean;
+
+  /**
+   * Add init functions to the application
+   */
+  initFunctions: boolean;
 }

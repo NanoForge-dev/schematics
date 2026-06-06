@@ -37,6 +37,7 @@ const transform = (schema: ApplicationSchema): ApplicationOptions => {
     packageManager: schema.packageManager ?? DEFAULT_PACKAGE_MANAGER,
     server: schema.server ?? false,
     editor: schema.editor ?? false,
+    initFunctions: schema.initFunctions ?? false,
   };
 };
 

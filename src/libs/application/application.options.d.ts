@@ -48,4 +48,9 @@ export interface ApplicationOptions {
    * Add editor dependencies
    */
   editor: boolean;
+
+  /**
+   * Add init functions to the application
+   */
+  initFunctions: boolean;
 }
