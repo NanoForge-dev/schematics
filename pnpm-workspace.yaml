@@ -20,7 +20,7 @@ catalogs:
     prettier: ^3.8.3
   schematics:
     '@angular-devkit/core': ^22.0.0
-    '@angular-devkit/schematics': ^21.2.13
+    '@angular-devkit/schematics': ^22.0.0
     rxjs: ^7.8.2
   tests:
     '@angular-devkit/schematics-cli': ^21.2.13
