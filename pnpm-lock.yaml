@@ -56,8 +56,8 @@ catalogs:
       version: 3.8.3
   schematics:
     '@angular-devkit/core':
-      specifier: ^21.2.13
-      version: 21.2.13
+      specifier: ^22.0.0
+      version: 22.0.0
     '@angular-devkit/schematics':
       specifier: ^21.2.13
       version: 21.2.13
@@ -81,7 +81,7 @@ importers:
     dependencies:
       '@angular-devkit/core':
         specifier: catalog:schematics
-        version: 21.2.13
+        version: 22.0.0
       '@angular-devkit/schematics':
         specifier: catalog:schematics
         version: 21.2.13
@@ -167,6 +167,15 @@ packages:
   '@angular-devkit/core@21.2.13':
     resolution: {integrity: sha512-9jLaHcUr6BumIY9nCsBib1q62p259nf++gd2igYJ7mLm1w/0wEacsZ1cC8wCGEe6vx8a+DrD+EVCQ6zivePG2A==}
     engines: {node: ^20.19.0 || ^22.12.0 || >=24.0.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
+    peerDependencies:
+      chokidar: ^5.0.0
+    peerDependenciesMeta:
+      chokidar:
+        optional: true
+
+  '@angular-devkit/core@22.0.0':
+    resolution: {integrity: sha512-GCEalkF17uygXnjHNyeIWuTzm16TDlhNLHsxbeYeJSJ48anwkZisL/L+oFzEmg8BGqx48nMGj2EVe4J8ADrSng==}
+    engines: {node: ^22.22.3 || ^24.15.0 || >=26.0.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
     peerDependencies:
       chokidar: ^5.0.0
     peerDependenciesMeta:
@@ -2385,6 +2394,15 @@ snapshots:
       rxjs: 7.8.2
       source-map: 0.7.6
 
+  '@angular-devkit/core@22.0.0':
+    dependencies:
+      ajv: 8.20.0
+      ajv-formats: 3.0.1(ajv@8.20.0)
+      jsonc-parser: 3.3.1
+      picomatch: 4.0.4
+      rxjs: 7.8.2
+      source-map: 0.7.6
+
   '@angular-devkit/schematics-cli@21.2.13(@types/node@25.9.1)':
     dependencies:
       '@angular-devkit/core': 21.2.13
@@ -3244,6 +3262,10 @@ snapshots:
   ajv-formats@3.0.1(ajv@8.18.0):
     optionalDependencies:
       ajv: 8.18.0
+
+  ajv-formats@3.0.1(ajv@8.20.0):
+    optionalDependencies:
+      ajv: 8.20.0
 
   ajv@6.15.0:
     dependencies:
