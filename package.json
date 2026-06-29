@@ -34,7 +34,8 @@
         "default": "./dist/index.js"
       }
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./collection.json": "./dist/collection.json"
   },
   "type": "module",
   "directories": {
