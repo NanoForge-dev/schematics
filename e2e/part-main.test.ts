@@ -27,7 +27,7 @@ const clientSave: Save = {
     {
       name: "ExampleComponent",
       path: "./components/example.component.ts",
-      paramsNames: ["exampleValueName", "exampleNum"],
+      paramsNames: ["exampleValueName", "exampleNum", "__RESERVED_ASSET_exampleAsset"],
     },
   ],
   systems: [{ name: "exampleSystem", path: "./systems/example.system.js" }],
@@ -35,7 +35,11 @@ const clientSave: Save = {
     {
       id: "player",
       components: {
-        ExampleComponent: { exampleValueName: "test", exampleNum: 5 },
+        ExampleComponent: {
+          exampleValueName: "test",
+          exampleNum: 5,
+          exampleAsset: "/path/to/asset",
+        },
       },
     },
   ],
@@ -105,7 +109,9 @@ describe("part-main schematic", () => {
     it("should register entities and systems", () => {
       const content = tree.readContent("/my-app/client/main.ts");
       expect(content).toContain("const player = registry.spawnEntity();");
-      expect(content).toContain('registry.addComponent(player, new ExampleComponent("test", 5));');
+      expect(content).toContain(
+        'registry.addComponent(player, new ExampleComponent("test", 5, assetManagerLibrary.getAsset("/path/to/asset")));',
+      );
       expect(content).toContain("registry.addSystem(exampleSystem);");
     });
   });
@@ -217,6 +223,9 @@ describe("part-main schematic", () => {
       const content = tree.readContent("/my-app/.nanoforge/editor/client/main.ts");
       expect(content).toContain(
         'options.editor.save.entities[0].components["ExampleComponent"]["exampleValueName"]',
+      );
+      expect(content).toContain(
+        'assetManagerLibrary.getAsset(options.editor.save.entities[0].components["ExampleComponent"]["exampleAsset"])',
       );
     });
 

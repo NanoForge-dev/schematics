@@ -49,7 +49,7 @@ export const generateMain = (options: MainOptions, save: Save) => {
         .generateRegistry(save.libraries)
 
         .generateInitFunctionIfNeeded(initFunctions, InitFunctionEnum.BEFORE_REGISTRY_INIT)
-        .generateEntities(save.components, save.entities)
+        .generateEntities(save.libraries, save.components, save.entities)
         .generateSystems(save.systems)
         .generateInitFunctionIfNeeded(initFunctions, InitFunctionEnum.AFTER_REGISTRY_INIT)
 

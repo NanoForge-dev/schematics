@@ -141,7 +141,7 @@ describe("MainGenerator", () => {
         {
           name: "Velocity",
           path: "non",
-          paramsNames: ["fast"],
+          paramsNames: ["fast", "__RESERVED_ASSET_asset"],
         },
       ];
       const entities = [
@@ -154,14 +154,17 @@ describe("MainGenerator", () => {
             },
             Velocity: {
               fast: 3,
+              asset: "test",
             },
           },
         },
       ];
-      const result = new MainGenerator().generateEntities(components, entities).toString();
+      const result = new MainGenerator().generateEntities([], components, entities).toString();
       expect(result).toContain("const player = registry.spawnEntity();");
       expect(result).toContain("registry.addComponent(player, new Position(1, 2));");
-      expect(result).toContain("registry.addComponent(player, new Velocity(3));");
+      expect(result).toContain(
+        'registry.addComponent(player, new Velocity(3, assetManagerLibrary.getAsset("test")));',
+      );
     });
   });
 
