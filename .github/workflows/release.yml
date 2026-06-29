@@ -26,7 +26,7 @@ jobs:
       - name: Release packages
         uses: ./node_modules/@nanoforge-dev/actions/actions/release-packages
         with:
-          packages: "@nanoforge-dev/cli"
+          packages: "@nanoforge-dev/schematics"
           tag-format: "{version}"
           latest: true
         env:
