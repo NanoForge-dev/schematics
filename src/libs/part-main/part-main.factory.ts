@@ -12,7 +12,7 @@ import {
 import * as fs from "fs";
 
 import { generateMain } from "@utils/main/main-functions";
-import { type Save } from "@utils/main/save.type";
+import { type Save, SaveLibraryTypeEnum } from "@utils/main/save.type";
 
 import { type PartMainOptions } from "./part-main.options";
 import { type PartMainSchema } from "./part-main.schema";
@@ -44,9 +44,13 @@ const getMainPath = (schema: PartMainSchema): string => {
 
 const writeMain = (schema: PartMainSchema, path: string) => {
   return (tree: Tree) => {
-    const save = getSave(path, schema.part, schema.saveFile);
+    let save = getSave(path, schema.part, schema.saveFile);
 
     const resPath = getMainPath(schema);
+
+    if (schema.editor) {
+      save = getEditorSave(save);
+    }
 
     const content = generateMain(schema, save);
     fs.rmSync(join(path as Path, resPath), { force: true });
@@ -59,6 +63,18 @@ const getSave = (path: string, part: "client" | "server", saveFile?: string): Sa
   return JSON.parse(
     fs.readFileSync(saveFile ?? join(path as Path, `.nanoforge/${part}.save.json`), "utf-8"),
   ) as Save;
+};
+
+const getEditorSave = (save: Save): Save => {
+  if (save.libraries.some((lib) => lib.type === SaveLibraryTypeEnum.GRAPHICS))
+    save.libraries.push({
+      id: "graphicsEditorLibrary",
+      type: "graphics-editor",
+      name: "Graphics2DEditorLibrary",
+      path: "@nanoforge-dev/graphics-2d-editor",
+    });
+
+  return save;
 };
 
 export const main = (schema: PartMainSchema): Rule => {

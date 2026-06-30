@@ -89,7 +89,7 @@
     "typescript": "catalog:build",
     "vitest": "catalog:tests"
   },
-  "packageManager": "pnpm@11.5.1",
+  "packageManager": "pnpm@11.9.0",
   "engines": {
     "node": "25"
   },
