@@ -78,6 +78,10 @@ export const main = (schema: ApplicationSchema): Rule => {
       tree.delete(join(basePath, ".env"));
     }
 
+    if (options.packageManager !== "pnpm") {
+      tree.delete(join(basePath, "pnpm-workspace.yaml"));
+    }
+
     return tree;
   };
 };
