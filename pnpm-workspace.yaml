@@ -1,31 +1,28 @@
 catalogs:
   build:
     cpx2: ^9.0.0
-    tsdown: ^0.22.1
+    tsdown: ^0.22.3
     typescript: ^6.0.3
   ci:
-    '@commitlint/cli': ^21.0.2
-    '@commitlint/config-conventional': ^21.0.2
+    '@commitlint/cli': ^21.1.0
+    '@commitlint/config-conventional': ^21.1.0
     '@favware/cliff-jumper': ^6.1.0
-    '@nanoforge-dev/actions': ^2.1.2
+    '@nanoforge-dev/actions': ^2.1.5
     husky: ^9.1.7
-    lint-staged: ^17.0.7
+    lint-staged: ^17.0.8
   core:
-    '@types/node': ^25.9.1
+    '@types/node': ^26.0.1
   lint:
     '@nanoforge-dev/utils-eslint-config': ^1.0.2
     '@nanoforge-dev/utils-prettier-config': ^1.0.2
     '@trivago/prettier-plugin-sort-imports': ^6.0.2
-    eslint: ^10.4.1
-    prettier: ^3.8.3
+    eslint: ^10.6.0
+    prettier: ^3.9.1
   schematics:
-    '@angular-devkit/core': ^22.0.0
-    '@angular-devkit/schematics': ^21.2.13
+    '@angular-devkit/core': ^22.0.4
+    '@angular-devkit/schematics': ^22.0.4
     rxjs: ^7.8.2
   tests:
-    '@angular-devkit/schematics-cli': ^21.2.13
-    '@vitest/coverage-v8': ^4.1.8
-    vitest: ^4.1.8
-
-minimumReleaseAgeExclude:
-  - '@nanoforge-dev/actions@2.1.2'
+    '@angular-devkit/schematics-cli': ^22.0.4
+    '@vitest/coverage-v8': ^4.1.9
+    vitest: ^4.1.9

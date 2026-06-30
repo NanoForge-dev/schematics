@@ -19,7 +19,8 @@
     "@nanoforge-dev/core-editor": "^1",<% } %>
     "@nanoforge-dev/ecs-client": "^1",<% if (server) { %>
     "@nanoforge-dev/ecs-server": "^1",<% } %>
-    "@nanoforge-dev/graphics-2d": "^1",
+    "@nanoforge-dev/graphics-2d": "^1",<% if (editor) { %>
+    "@nanoforge-dev/graphics-2d-editor": "^1",<% } %>
     "@nanoforge-dev/input": "^1",
     "@nanoforge-dev/music": "^1",<% if (server) { %>
     "@nanoforge-dev/network-client": "^1",

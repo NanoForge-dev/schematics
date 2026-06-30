@@ -123,6 +123,7 @@ describe("application schematic", () => {
       expect(packageJson.author).toBe("Test Author");
       expect(packageJson.description).toBe("A test project");
       expect(packageJson.devDependencies["@nanoforge-dev/core-editor"]).toBeDefined();
+      expect(packageJson.devDependencies["@nanoforge-dev/graphics-2d-editor"]).toBeDefined();
     });
   });
 

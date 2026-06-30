@@ -108,6 +108,11 @@ describe("part-main schematic", () => {
       expect(content).toContain('registry.addComponent(player, new ExampleComponent("test", 5));');
       expect(content).toContain("registry.addSystem(exampleSystem);");
     });
+
+    it("should not contain editor libs", () => {
+      const content = tree.readContent("/my-app/client/main.ts");
+      expect(content).not.toContain("@nanoforge-dev/graphics-2d-editor");
+    });
   });
 
   describe("server main with TypeScript", () => {
@@ -235,6 +240,14 @@ describe("part-main schematic", () => {
       expect(content).toContain(
         'registry.addComponent(player, { name: "__RESERVED_entityId", entityId: "player" });',
       );
+    });
+
+    it("should init graphics editor", () => {
+      const content = tree.readContent("/my-app/.nanoforge/editor/client/main.ts");
+      expect(content).toContain(
+        'import { Graphics2DEditorLibrary } from "@nanoforge-dev/graphics-2d-editor"',
+      );
+      expect(content).toContain("const graphicsEditorLibrary = new Graphics2DEditorLibrary();");
     });
   });
 });
