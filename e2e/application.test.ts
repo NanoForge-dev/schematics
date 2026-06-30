@@ -24,6 +24,7 @@ describe("application schematic", () => {
       expect(tree.files).toContain("/my-app/README.md");
       expect(tree.files).toContain("/my-app/.gitignore");
       expect(tree.files).not.toContain("/my-app/.env");
+      expect(tree.files).not.toContain("/my-app/pnpm-workspace.yaml");
     });
 
     it("should set the project name in package.json", () => {
@@ -145,6 +146,7 @@ describe("application schematic", () => {
         server: true,
       });
       expect(tree.files).toContain("/pnpm-app/package.json");
+      expect(tree.files).toContain("/pnpm-app/pnpm-workspace.yaml");
       const packageJson = JSON.parse(tree.readContent("/pnpm-app/package.json"));
       expect(packageJson).toHaveProperty("pnpm", {
         neverBuiltDependencies: [],
