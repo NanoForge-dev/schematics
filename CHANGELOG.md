@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file.
 
+# [2.2.0](https://github.com/NanoForge-dev/schematics/compare/2.1.4...2.2.0) - (2026-06-30)
+
+## Features
+
+- Add pnpm workspace in app schematic (#155) ([5e0924d](https://github.com/NanoForge-dev/schematics/commit/5e0924d217c6ca62e322627f4adee79470c7bf2f)) by @Exeloo
+- Add assets to entity generation (#153) ([a008fc6](https://github.com/NanoForge-dev/schematics/commit/a008fc6784cc4d15f3f09fc41efd9a0ea658c3a5)) by @Exeloo
+- Graphics 2d editor generation (#154) ([89059f7](https://github.com/NanoForge-dev/schematics/commit/89059f7fbb5a505f3669bc691acbf377abd51fa6)) by @Exeloo
+
 # [2.1.4](https://github.com/NanoForge-dev/schematics/compare/1.0.2...2.1.4) - (2026-06-29)
 
 ## Bug Fixes
