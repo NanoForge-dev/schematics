@@ -105,8 +105,12 @@ export class MainGenerator {
     return this;
   }
 
-  generateEntities(components: SaveComponent[], entities: SaveEntity[]): MainGenerator {
-    entities.forEach((entity, index) => this.generateEntity(components, entity, index));
+  generateEntities(
+    libs: SaveLibrary[],
+    components: SaveComponent[],
+    entities: SaveEntity[],
+  ): MainGenerator {
+    entities.forEach((entity, index) => this.generateEntity(libs, components, entity, index));
     return this;
   }
 
@@ -161,6 +165,7 @@ export class MainGenerator {
   }
 
   private generateEntity(
+    libs: SaveLibrary[],
     components: SaveComponent[],
     entity: SaveEntity,
     entityIndex: number,
@@ -170,13 +175,19 @@ export class MainGenerator {
       const originalsParams = components.find(({ name }) => name === componentName)?.paramsNames;
       if (!originalsParams)
         throw new Error("Missing component in entity or inexistent saved component");
-      const params: string[] = !this.editor
-        ? Object.values(originalsParams).map((ogParam) => {
-            return getStringParam(rawParams[ogParam]);
-          })
-        : Object.values(originalsParams).map((ogParam) => {
-            return `options.editor.save.entities[${entityIndex}].components["${componentName}"]["${ogParam}"]`;
-          });
+      const params: string[] = originalsParams.map((ogParam) => {
+        let isAsset = false;
+        if (ogParam.startsWith("__RESERVED_ASSET_")) {
+          isAsset = true;
+          ogParam = ogParam.replace("__RESERVED_ASSET_", "");
+        }
+
+        const param = this.editor
+          ? `options.editor.save.entities[${entityIndex}].components["${componentName}"]["${ogParam}"]`
+          : getStringParam(rawParams[ogParam]);
+        if (isAsset) return this.getAssetParam(param, libs);
+        return param;
+      });
       this.writeLine(
         `registry.addComponent(${entity.id}, new ${componentName}(${params.join(", ")}));`,
       );
@@ -187,6 +198,13 @@ export class MainGenerator {
       );
     }
     this.endSection();
+  }
+
+  private getAssetParam(param: string, libs: SaveLibrary[]): string {
+    const libName =
+      libs.find((lib) => lib.type === SaveLibraryTypeEnum.ASSET_MANAGER)?.id ??
+      "assetManagerLibrary";
+    return `${libName}.getAsset(${param})`;
   }
 
   private getInitFunction(name: string, type: SaveLibraryTypeEnum | string): string {
