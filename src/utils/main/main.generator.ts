@@ -152,7 +152,7 @@ export class MainGenerator {
   }
 
   private generateImports(els: { name: string; path: string }[], relative: boolean): MainGenerator {
-    els
+    [...els]
       .sort((a, b) => a.path.localeCompare(b.path))
       .forEach(({ name, path }) => {
         path = path.replace(/\.(?:ts|js)$/, "");
