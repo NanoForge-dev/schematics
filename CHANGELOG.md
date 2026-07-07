@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+# [2.2.1](https://github.com/NanoForge-dev/schematics/compare/2.2.0...2.2.1) - (2026-07-07)
+
+## Bug Fixes
+
+- Shallow copy imports array to avoid sorting of parent array (#157) ([88f48da](https://github.com/NanoForge-dev/schematics/commit/88f48da2b72a6b805ee42036daaa75cd3fdee821)) by @Exeloo
+
 # [2.2.0](https://github.com/NanoForge-dev/schematics/compare/2.1.4...2.2.0) - (2026-06-30)
 
 ## Features
